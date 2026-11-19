@@ -1,52 +1,1098 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Сынақ — пробный ЕНТ по математике, физике, информатике, химии, биологии и географии</title>
-  <meta name="description" content="Пробный ЕНТ по профильным предметам: математика, физика, информатика, химия, биология, география. 40 заданий в формате ЕНТ, 50 баллов, таймер и разбор каждой ошибки. Первый вариант бесплатно.">
-  <meta name="theme-color" content="#1f3bb3">
-  <meta property="og:title" content="Сынақ — пробный ЕНТ по 6 профильным предметам">
-  <meta property="og:description" content="40 заданий как на ЕНТ, таймер, баллы из 50 и разбор ошибок. Первый вариант бесплатно.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231f3bb3'/%3E%3Cpath d='M18 33l9 9 19-21' stroke='white' stroke-width='7' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Квантовая природа света — интерактивный урок</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0f22;--panel:#131a35;--panel2:#1d2650;--line:#2b3670;--text:#eef2ff;--muted:#a8b3dc;--acc:#ffd166;--acc2:#4cc9f0;--good:#06d6a0;--bad:#ef476f;--wave:#4cc9f0;--part:#ff9f1c}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:radial-gradient(1200px 700px at 80% -10%,#24306a 0%,transparent 60%),radial-gradient(900px 600px at -10% 110%,#3a1d5e 0%,transparent 60%),var(--bg);color:var(--text);font-family:Nunito,system-ui,sans-serif;font-size:clamp(16px,1.3vw,24px);-webkit-tap-highlight-color:transparent}
+h1{font-size:2.6em;margin:.2em 0;font-weight:900;line-height:1.1}
+h2{font-size:1.6em;margin:.3em 0 .6em;font-weight:900}
+h3{margin:.2em 0 .5em;font-size:1.15em}
+p{line-height:1.45}
+nav{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:.4em;align-items:center;padding:.5em 1em;background:rgba(10,15,34,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .brand{font-weight:900;margin-right:.6em;white-space:nowrap}
+nav .sp{flex:1}
+@media(max-width:1650px){nav .brand{display:none}}
+.btn{font:inherit;font-weight:800;border:0;border-radius:14px;padding:.55em 1em;background:var(--panel2);color:var(--text);cursor:pointer;touch-action:manipulation;min-height:48px;transition:transform .1s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn.on,.btn.primary{background:var(--acc);color:#1a1a1a}
+.btn.ghost{background:transparent;border:2px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:default}
+section{display:none;padding:1em 1.6em 3em;max-width:1700px;margin:0 auto}
+section.active{display:block;animation:fade .35s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:1em 1.3em;margin-bottom:1em}
+.grid2{display:grid;grid-template-columns:1.7fr 1fr;gap:1em;align-items:start}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1em}
+.gridEq{display:grid;grid-template-columns:1fr 1fr;gap:1em}
+@media(max-width:950px){.grid2,.grid3,.gridEq{grid-template-columns:1fr}h1{font-size:1.9em}}
+.hidden{display:none!important}
+.formula{font-family:"Cambria Math","Times New Roman",serif;font-size:1.55em;color:var(--acc);text-align:center;margin:.3em 0;font-style:italic}
+.muted{color:var(--muted)}
+.wave{color:var(--wave)}.part{color:var(--part)}
+canvas{display:block;width:100%;border-radius:16px;background:#060a18;touch-action:none}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:16px;border-radius:8px;background:#2a3566;outline:none;margin:16px 0 10px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:40px;height:40px;border-radius:50%;background:var(--acc);border:4px solid #fff;cursor:pointer;box-shadow:0 2px 10px #0008}
+input[type=range]::-moz-range-thumb{width:34px;height:34px;border-radius:50%;background:var(--acc);border:4px solid #fff;cursor:pointer}
+label.ctl{display:block;font-weight:800;margin-top:.4em}
+label.ctl b{color:var(--acc)}
+.row{display:flex;flex-wrap:wrap;gap:.5em;align-items:center}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:.5em;margin-top:.6em}
+.stat{background:var(--panel2);border-radius:14px;padding:.45em .7em}
+.stat .k{font-size:.75em;color:var(--muted);font-weight:700}
+.stat .v{font-size:1.15em;font-weight:900}
+.meter{height:22px;border-radius:11px;background:#26305e;overflow:hidden;margin:.3em 0}
+.meter>div{height:100%;width:0;border-radius:11px;transition:width .2s}
+/* intro */
+.hero{text-align:center;padding:1em 0 .5em}
+.lead{font-size:1.3em;color:var(--muted)}
+.hook{border:2px solid var(--acc);font-size:1.15em}
+.timeline{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.8em}
+.tl{font:inherit;text-align:left;color:var(--text);background:var(--panel);border:2px solid var(--line);border-radius:18px;padding:.8em 1em;cursor:pointer;min-height:130px;position:relative;transition:transform .15s}
+.tl:active{transform:scale(.97)}
+.tl .yr{font-size:1.5em;font-weight:900}
+.tl .who{font-weight:800}
+.tl .tag{position:absolute;top:.7em;right:.8em;font-size:.75em;font-weight:900;padding:.15em .55em;border-radius:20px}
+.tl .txt{display:none;margin-top:.5em;color:var(--muted);font-size:.92em;line-height:1.35}
+.tl.open .txt{display:block}
+.tl.open{border-color:var(--acc)}
+.tl .hint{font-size:.8em;color:var(--muted);margin-top:.4em}
+.tl.open .hint{display:none}
+details summary{cursor:pointer;font-weight:900;font-size:1.1em}
+details li{margin:.35em 0}
+.reveal{margin-top:.6em;padding:.7em 1em;border-radius:14px;background:#0f2a2a;border-left:5px solid var(--good)}
+/* games */
+.gtabs{display:flex;flex-wrap:wrap;gap:.5em;margin-bottom:1em}
+.gtabs .btn{font-size:1.1em}
+.topbar{display:flex;flex-wrap:wrap;gap:1em;align-items:center;justify-content:space-between;margin-bottom:.6em}
+.pill{background:var(--panel2);border-radius:30px;padding:.35em .9em;font-weight:900;font-size:1.1em}
+.timer{height:14px;border-radius:7px;background:#26305e;overflow:hidden;margin:.4em 0 .8em}
+.timer>div{height:100%;background:linear-gradient(90deg,var(--good),var(--acc),var(--bad));width:100%}
+.q{font-size:1.45em;font-weight:900;margin:.3em 0 .7em;line-height:1.25}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:.8em}
+@media(max-width:700px){.opts{grid-template-columns:1fr}}
+.opt{font:inherit;font-weight:900;font-size:1.25em;border:4px solid transparent;border-radius:20px;padding:.8em;min-height:110px;cursor:pointer;color:#111;touch-action:manipulation;transition:transform .1s;position:relative}
+.opt:active{transform:scale(.97)}
+.opt small{display:block;font-size:.65em;font-weight:800;opacity:.85}
+.opt.right{border-color:var(--good);box-shadow:0 0 0 5px rgba(6,214,160,.35)}
+.opt.wrong{border-color:var(--bad);opacity:.7}
+.opt .e{display:block;font-size:.7em;margin-top:.3em;background:rgba(0,0,0,.55);color:#fff;border-radius:10px;padding:.15em .4em}
+.qopt{background:var(--panel2);color:var(--text);text-align:left;min-height:80px;font-size:1.1em}
+.qopt .let{display:inline-block;width:1.6em;height:1.6em;line-height:1.6em;text-align:center;border-radius:50%;background:var(--acc);color:#111;margin-right:.5em}
+.fb{margin-top:.8em;padding:.8em 1em;border-radius:16px;font-size:1.05em;line-height:1.4}
+.fb.ok{background:rgba(6,214,160,.15);border-left:6px solid var(--good)}
+.fb.no{background:rgba(239,71,111,.15);border-left:6px solid var(--bad)}
+.metalbadge{display:inline-flex;align-items:center;gap:.6em;background:linear-gradient(135deg,#9aa4b8,#5b6478);color:#111;border-radius:16px;padding:.4em .9em;font-weight:900;font-size:1.2em}
+.metalbadge .sym{font-size:1.5em}
+.teams{display:grid;grid-template-columns:1fr 1fr;gap:1em;margin-bottom:.8em}
+.team{border-radius:20px;padding:.6em 1em;background:var(--panel2);border:4px solid transparent;text-align:center}
+.team .nm{font-weight:900;font-size:1.2em}
+.team .sc{font-size:2.6em;font-weight:900}
+.team.act{border-color:var(--acc);box-shadow:0 0 25px rgba(255,209,102,.35)}
+.team input{font:inherit;font-weight:900;text-align:center;background:#0b1130;color:var(--text);border:2px solid var(--line);border-radius:12px;padding:.3em;width:100%}
+.big-center{text-align:center;padding:1.5em 0}
+.big-center .huge{font-size:3em;font-weight:900}
+.pool{display:flex;flex-wrap:wrap;gap:.6em;justify-content:center;min-height:80px;margin-bottom:1em}
+.chip{font:inherit;font-weight:800;font-size:1.05em;background:var(--panel2);color:var(--text);border:3px solid var(--line);border-radius:16px;padding:.6em .9em;cursor:pointer;touch-action:manipulation}
+.chip.sel{border-color:var(--acc);background:#3a3415;transform:scale(1.05)}
+.chip.shake{animation:shake .4s;border-color:var(--bad)}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.buckets{display:grid;grid-template-columns:1fr 1fr;gap:1em}
+.bucket{font:inherit;color:var(--text);text-align:left;border-radius:22px;padding:1em;min-height:260px;cursor:pointer;border:4px dashed}
+.bucket.w{background:rgba(76,201,240,.08);border-color:var(--wave)}
+.bucket.p{background:rgba(255,159,28,.08);border-color:var(--part)}
+.bucket h3{font-size:1.4em}
+.bucket .placed{display:flex;flex-wrap:wrap;gap:.4em}
+.bucket .placed span{background:rgba(255,255,255,.08);border-radius:12px;padding:.3em .6em;font-weight:700;font-size:.9em}
+.slots,.tiles{display:flex;flex-wrap:wrap;gap:.45em;justify-content:center;margin:.8em 0}
+.slot,.tile{font:inherit;font-weight:900;font-size:1.9em;width:1.7em;height:1.9em;border-radius:14px;display:flex;align-items:center;justify-content:center;touch-action:manipulation;cursor:pointer;user-select:none}
+.slot{background:#0b1130;border:3px dashed var(--line);color:var(--text)}
+.slot.f{border-style:solid;border-color:var(--acc2)}
+.slot.ok{background:rgba(6,214,160,.25);border-color:var(--good)}
+.slot.bad{background:rgba(239,71,111,.25);border-color:var(--bad)}
+.slot.lock{border-color:var(--acc);color:var(--acc)}
+.tile{background:var(--acc);color:#1a1a1a;border:0;box-shadow:0 4px 0 #b8922f;transition:transform .1s}
+.tile:active{transform:translateY(3px);box-shadow:0 1px 0 #b8922f}
+.tile.used{visibility:hidden}
+.slots.shake{animation:shake .4s}
+.jgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:.5em}
+.jcat{background:#1a2f8a;border-radius:14px;padding:.5em;min-height:3.4em;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;font-size:1.05em;text-transform:uppercase;line-height:1.15}
+.jcell{font:inherit;font-size:1.9em;font-weight:900;color:var(--acc);background:linear-gradient(180deg,#2340b8,#16288a);border:0;border-radius:14px;min-height:1.75em;cursor:pointer;text-shadow:0 3px 0 #0008;touch-action:manipulation;transition:transform .1s}
+.jcell:active{transform:scale(.95)}
+.jcell.used{background:#11163a;color:transparent;text-shadow:none;cursor:default}
+.jteams{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.7em;margin-top:1em}
+.jteam{background:var(--panel2);border-radius:18px;padding:.5em .8em;text-align:center}
+.jteam .nm{font-weight:900}.jteam .sc{font-size:2.3em;font-weight:900}
+.jteam .row{justify-content:center}.jteam .btn{min-height:40px;padding:.3em .7em}
+#jpModal{position:fixed;inset:0;z-index:45;background:rgba(5,8,30,.94);display:flex;align-items:center;justify-content:center;padding:2vh 2vw;overflow:auto}
+#jpModal.hidden{display:none!important}
+.jbox{background:linear-gradient(180deg,#2340b8,#121f70);border:3px solid var(--acc);border-radius:26px;padding:1.2em 2em;width:min(1400px,96vw);text-align:center}
+.jhead{display:flex;justify-content:space-between;font-weight:900;font-size:1.3em;color:var(--acc);text-transform:uppercase}
+.jq{font-size:2.3em;font-weight:900;line-height:1.25;margin:.8em 0 .3em}
+.ja{font-size:1.9em;font-weight:900;color:#7cffb2;background:rgba(0,0,0,.3);border-radius:18px;padding:.4em .8em;margin-top:.6em}
+.jaward{display:flex;flex-wrap:wrap;gap:.6em;justify-content:center;margin-top:1em}
+.jaward .tm{background:rgba(0,0,0,.3);border-radius:16px;padding:.4em .7em;display:flex;align-items:center;gap:.5em;font-weight:900}
+.jaward .btn{min-height:46px}
+.btn.plus{background:var(--good);color:#06281f}.btn.minus{background:var(--bad);color:#fff}
+@media(max-width:700px){.jcat{font-size:.7em}.jcell{font-size:1.4em}.jq{font-size:1.5em}}
+#confetti{background:transparent!important;border-radius:0;position:fixed;inset:0;pointer-events:none;z-index:60;width:100%;height:100%}
+.legend{display:flex;gap:1em;flex-wrap:wrap;font-size:.85em;color:var(--muted);margin-top:.4em}
+.dot{display:inline-block;width:.8em;height:.8em;border-radius:50%;vertical-align:middle;margin-right:.3em}
+ol.laws li{margin:.45em 0;line-height:1.35}
+.consts{display:flex;flex-wrap:wrap;gap:.5em;margin-top:.6em}
+.consts span{background:var(--panel2);border-radius:12px;padding:.3em .7em;font-weight:700;font-family:"Cambria Math","Times New Roman",serif}
+.task .num{display:inline-block;background:var(--acc);color:#111;font-weight:900;border-radius:12px;padding:.1em .6em;margin-right:.5em}
+.task .tq{font-size:1.1em;line-height:1.45;margin:.4em 0 .7em}
+.task .tb{display:flex;flex-wrap:wrap;gap:.5em}
+.task .tp{margin-top:.6em;padding:.7em 1em;border-radius:14px;line-height:1.55}
+.task .hint{background:rgba(255,209,102,.1);border-left:5px solid var(--acc)}
+.task .sol{background:rgba(76,201,240,.1);border-left:5px solid var(--acc2)}
+.task .ans{background:rgba(6,214,160,.12);border-left:5px solid var(--good);font-weight:800;font-size:1.1em}
+.task table{border-collapse:collapse;margin:.4em 0}
+.task td,.task th{border:1px solid var(--line);padding:.25em .6em;text-align:center}
+#tkModal{position:fixed;inset:0;z-index:40;background:rgba(5,8,20,.88);display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:2vh 2vw}
+#tkModal.hidden{display:none!important}
+#tkModal .mbox{background:var(--panel);border:2px solid var(--acc);border-radius:24px;padding:1em 1.5em;width:min(1400px,96vw);font-size:1.3em}
+#tkModal .task .tq{font-size:1.25em}
+</style>
 </head>
 <body>
-  <header class="topbar" id="topbar">
-    <a href="#/" class="logo"><span class="logo-mark">✓</span><span>Сынақ</span></a>
-    <nav class="nav">
-      <a href="#/tests" data-nav="tests">Тесты</a>
-      <a href="#/stats" data-nav="stats">Результаты</a>
-      <button class="btn btn-sm btn-accent" id="accessBtn">Полный доступ</button>
-    </nav>
-  </header>
+<canvas id="confetti"></canvas>
+<nav>
+  <div class="brand">⚛️ Квантовая природа света</div>
+  <button class="btn" data-go="intro">1. Загадка</button>
+  <button class="btn" data-go="photon">2. Фотон</button>
+  <button class="btn" data-go="photoeffect">3. Фотоэффект</button>
+  <button class="btn" data-go="duality">4. Дуализм</button>
+  <button class="btn" data-go="tasks">📚 5. Задачи</button>
+  <button class="btn" data-go="games">🎮 6. Игры</button>
+  <button class="btn" data-go="jeopardy">🟦 7. Своя игра</button>
+  <span class="sp"></span>
+  <button class="btn ghost" id="snd" title="Звук">🔊</button>
+  <button class="btn ghost" id="fs" title="Весь экран">⛶</button>
+</nav>
 
-  <main id="app" tabindex="-1"></main>
+<!-- ============ 1. INTRO ============ -->
+<section id="intro">
+  <div class="hero">
+    <h1>Свет — <span class="wave">волна</span> или <span class="part">частица</span>?</h1>
+    <p class="lead">Ответ физики XX века: <b>и то, и другое</b>. Сегодня разберёмся почему.</p>
+  </div>
+  <div class="card hook">
+    <div style="font-weight:800">🤔 Загадка для класса</div>
+    <p>Если долго светить на цинковую пластинку <b style="color:#ff5a5a">ярким красным прожектором</b> — ни один электрон из неё не вылетит. А <b style="color:#c08cff">слабая ультрафиолетовая лампа</b> выбивает электроны мгновенно. Почему?</p>
+    <button class="btn primary" data-reveal="hookA">Показать подсказку</button>
+    <div id="hookA" class="reveal hidden">Волновая теория говорит: чем ярче свет, тем больше энергии он несёт — значит, мощный красный прожектор должен справиться. Но опыт говорит «нет»! Значит, свет передаёт энергию <b>порциями (квантами)</b>, и важна энергия <b>одной порции</b>, а не яркость.</div>
+  </div>
+  <h2>История великого спора <span class="muted" style="font-size:.6em">— нажимайте на карточки</span></h2>
+  <div class="timeline" id="timeline"></div>
+  <div class="legend"><span><span class="dot" style="background:var(--part)"></span>свет — частицы</span><span><span class="dot" style="background:var(--wave)"></span>свет — волна</span><span><span class="dot" style="background:var(--good)"></span>и то, и другое</span></div>
+  <details class="card" style="margin-top:1em">
+    <summary>📋 Сценарий урока для учителя (45 минут)</summary>
+    <ol>
+      <li><b>0–5 мин.</b> Загадка про цинк и красный прожектор. Выслушать версии учеников.</li>
+      <li><b>5–12 мин.</b> История спора: ученики по очереди выходят к доске и открывают карточки.</li>
+      <li><b>12–20 мин.</b> «Фотон»: формулы E = hν, p = h/λ. Ученики двигают ползунок и сравнивают энергию фотонов.</li>
+      <li><b>20–30 мин.</b> «Фотоэффект»: виртуальная лаборатория, законы Столетова, уравнение Эйнштейна. Решаем загадку из начала урока.</li>
+      <li><b>30–35 мин.</b> «Дуализм»: опыт с двумя щелями, фотоны по одному.</li>
+      <li><b>По желанию / домашнее задание.</b> «Задачи»: задачи 19.1–19.41 из задачника с подсказками и решениями.</li>
+      <li><b>35–43 мин.</b> Игры: «Выбей электрон!», «Битва команд», «Волна или частица?», «Собери слово» или «Своя игра» (вкладка 7).</li>
+      <li><b>43–45 мин.</b> Итог: «Свет — это поток фотонов, которые ведут себя как волны».</li>
+    </ol>
+  </details>
+</section>
 
-  <footer class="footer" id="footer">
-    <div class="wrap">
-      <p><b>Сынақ</b> — независимый тренажёр для подготовки к ЕНТ. Не является официальным тестом НЦТ (testcenter.kz). Все задания составлены авторами тренажёра.</p>
-      <p class="muted" style="font-size:13px">Сайт считает анонимные заходы (без имён, телефонов и IP), чтобы понимать, что улучшить.</p>
-      <p>Вопросы и оплата: <a id="footerWa" href="#" target="_blank" rel="noopener">WhatsApp</a></p>
+<!-- ============ 2. PHOTON ============ -->
+<section id="photon">
+  <h2>Фотон — квант света</h2>
+  <div class="grid2">
+    <div class="card">
+      <canvas id="cvPhoton" style="height:38vh;min-height:240px"></canvas>
+      <label class="ctl">Длина волны λ = <b id="l2v">530 нм</b></label>
+      <input type="range" id="l2" min="100" max="1000" step="5" value="530">
+      <div class="row">
+        <button class="btn" data-l2="250">УФ 250 нм</button>
+        <button class="btn" data-l2="400">Фиолетовый</button>
+        <button class="btn" data-l2="470">Синий</button>
+        <button class="btn" data-l2="530">Зелёный</button>
+        <button class="btn" data-l2="580">Жёлтый</button>
+        <button class="btn" data-l2="680">Красный</button>
+        <button class="btn" data-l2="950">ИК 950 нм</button>
+      </div>
     </div>
-  </footer>
-
-  <div class="modal" id="modal" hidden>
-    <div class="modal-bg" data-close></div>
-    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-x" data-close aria-label="Закрыть">×</button>
-      <div id="modalBody"></div>
+    <div class="card">
+      <div class="formula">E = hν = hc / λ</div>
+      <div class="formula" style="font-size:1.25em">p = h / λ &nbsp;&nbsp; m₀ = 0 &nbsp;&nbsp; v = c</div>
+      <p class="muted" style="font-size:.85em;text-align:center;margin:.2em 0">h = 6,63·10⁻³⁴ Дж·с — постоянная Планка; 1 эВ = 1,6·10⁻¹⁹ Дж</p>
+      <div class="stats">
+        <div class="stat"><div class="k">Излучение</div><div class="v" id="p_name">—</div></div>
+        <div class="stat"><div class="k">Частота ν</div><div class="v" id="p_nu">—</div></div>
+        <div class="stat"><div class="k">Энергия E, Дж</div><div class="v" id="p_EJ">—</div></div>
+        <div class="stat"><div class="k">Энергия E, эВ</div><div class="v" id="p_EeV" style="color:var(--acc)">—</div></div>
+        <div class="stat" style="grid-column:1/3"><div class="k">Импульс p</div><div class="v" id="p_p">—</div></div>
+      </div>
+      <div class="k muted" style="margin-top:.6em;font-weight:700">Энергия одного фотона</div>
+      <div class="meter"><div id="p_meter"></div></div>
+      <p style="font-size:.9em">Чем <b>короче</b> волна, тем <b>больше</b> энергия фотона. Фиолетовый фотон «сильнее» красного почти в 2 раза!</p>
     </div>
   </div>
+  <div class="grid3">
+    <div class="card"><h3>☀️ Вопрос 1</h3><p>Почему мы загораем и обгораем от ультрафиолета, а не от тёплого инфракрасного излучения?</p><button class="btn" data-reveal="r1">Ответ</button><div id="r1" class="reveal hidden">Фотон УФ (≈4 эВ) несёт достаточно энергии, чтобы изменить молекулы в клетках кожи. Фотон ИК (≈1 эВ) на это не способен, сколько бы их ни было, — он только нагревает.</div></div>
+    <div class="card"><h3>🔴 Вопрос 2</h3><p>Почему в фотолаборатории при печати чёрно-белых фото можно включать красный фонарь?</p><button class="btn" data-reveal="r2">Ответ</button><div id="r2" class="reveal hidden">Энергии красных фотонов не хватает, чтобы запустить химическую реакцию в фотобумаге. Синий или белый свет её сразу засветит.</div></div>
+    <div class="card"><h3>🔦 Задача</h3><p>Сколько фотонов в секунду испускает лазерная указка мощностью 1 мВт (λ = 650 нм)?</p><button class="btn" data-reveal="r3">Решение</button><div id="r3" class="reveal hidden">E = hc/λ = 6,63·10⁻³⁴·3·10⁸ / 6,5·10⁻⁷ ≈ 3,06·10⁻¹⁹ Дж.<br>N = P/E = 10⁻³ / 3,06·10⁻¹⁹ ≈ <b>3,3·10¹⁵ фотонов каждую секунду!</b></div></div>
+  </div>
+</section>
 
-  <div class="toast" id="toast" hidden></div>
+<!-- ============ 3. PHOTOEFFECT ============ -->
+<section id="photoeffect">
+  <h2>Фотоэффект — виртуальная лаборатория</h2>
+  <div class="grid2">
+    <div class="card">
+      <canvas id="cvPE" style="height:56vh;min-height:330px"></canvas>
+      <div class="legend"><span><span class="dot" id="phDot" style="background:#c08cff"></span>фотоны</span><span><span class="dot" style="background:#4cc9f0"></span>электроны</span></div>
+    </div>
+    <div class="card">
+      <div style="font-weight:800">Катод из металла:</div>
+      <div class="row" id="metalBtns" style="margin-top:.4em"></div>
+      <label class="ctl">Длина волны λ = <b id="peLv">400 нм</b></label>
+      <input type="range" id="peL" min="150" max="900" step="5" value="400">
+      <label class="ctl">Интенсивность (яркость) света: <b id="peIv">60 %</b></label>
+      <input type="range" id="peI" min="0" max="100" step="5" value="60">
+      <label class="ctl">Напряжение U = <b id="peUv">0,0 В</b></label>
+      <input type="range" id="peU" min="-4" max="4" step="0.1" value="0">
+      <div class="stats">
+        <div class="stat"><div class="k">Энергия фотона hν</div><div class="v" id="peE">—</div></div>
+        <div class="stat"><div class="k">Работа выхода A</div><div class="v" id="peA">—</div></div>
+        <div class="stat"><div class="k">Eк max электрона</div><div class="v" id="peEk" style="color:var(--acc)">—</div></div>
+        <div class="stat"><div class="k">v max электрона</div><div class="v" id="peV">—</div></div>
+        <div class="stat"><div class="k">Запирающее напряжение</div><div class="v" id="peUz">—</div></div>
+        <div class="stat"><div class="k">Красная граница λкр</div><div class="v" id="peLkr">—</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="grid3">
+    <div class="card"><h3>Уравнение Эйнштейна</h3><div class="formula">hν = A + mv²/2</div><p>Энергия фотона тратится на то, чтобы <b>вырвать</b> электрон из металла (работа выхода A), а остаток становится его <b>кинетической энергией</b>.</p><p>Красная граница: <span class="formula" style="font-size:1.1em">λкр = hc / A</span></p></div>
+    <div class="card"><h3>Законы Столетова</h3><ol class="laws">
+      <li>Фототок насыщения пропорционален <b>интенсивности</b> света (больше фотонов — больше электронов).</li>
+      <li>Максимальная кинетическая энергия электронов растёт с <b>частотой</b> света и <b>не зависит</b> от интенсивности.</li>
+      <li>Для каждого вещества есть <b>красная граница</b>: если λ > λкр, фотоэффекта нет при любой яркости.</li>
+    </ol></div>
+    <div class="card"><h3>🧪 Опыты у доски</h3><ol class="laws">
+      <li>Выберите <b>цинк</b> и красный свет. Поставьте яркость 100 %. Вылетают электроны?</li>
+      <li>Найдите красную границу для <b>цезия</b> и <b>платины</b>. Где применяют цезий?</li>
+      <li>Подберите напряжение, при котором ток станет нулевым. Сравните с Eк max.</li>
+      <li>Увеличьте яркость. Что меняется: число или скорость электронов?</li>
+    </ol></div>
+  </div>
+</section>
 
-  <script src="js/config.js"></script>
-  <script src="js/gen.js"></script>
-  <script src="js/s-inf.js"></script>
-  <script src="js/s-chem.js"></script>
-  <script src="js/s-bio.js"></script>
-  <script src="js/s-geo.js"></script>
-  <script src="js/app.js"></script>
+<!-- ============ 4. DUALITY ============ -->
+<section id="duality">
+  <h2>Корпускулярно-волновой дуализм: опыт с двумя щелями</h2>
+  <div class="gridEq">
+    <div class="card"><canvas id="cvSlit" style="height:44vh;min-height:280px"></canvas></div>
+    <div class="card"><canvas id="cvScreen" style="height:44vh;min-height:280px"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="row">
+      <button class="btn primary" id="sl1">+1 фотон</button>
+      <button class="btn" id="sl100">+100 фотонов</button>
+      <button class="btn" id="slFlow">▶ Поток</button>
+      <button class="btn ghost" id="slReset">⟲ Сброс</button>
+      <span class="pill" id="slCount">Фотонов: 0</span>
+    </div>
+    <div class="row" style="margin-top:.6em">
+      <span style="font-weight:800">Режим:</span>
+      <button class="btn on" data-mode="two">Две щели</button>
+      <button class="btn" data-mode="one">Одна щель</button>
+      <button class="btn" data-mode="detect">Две щели + 👁 детектор</button>
+    </div>
+  </div>
+  <div class="grid3">
+    <div class="card"><h3><span class="part">⚪ Как частица</span></h3><p>Каждый фотон оставляет на экране <b>одну точку</b>. Он не «размазывается» — он попадает целиком в одно место.</p></div>
+    <div class="card"><h3><span class="wave">🌊 Как волна</span></h3><p>Но куда попадёт фотон — заранее неизвестно. Тысячи точек складываются в <b>интерференционные полосы</b> — как у волны, прошедшей через обе щели сразу!</p></div>
+    <div class="card"><h3>👁 Загадка наблюдения</h3><p>Если поставить детектор и узнать, через какую щель пролетел фотон, — <b>полосы исчезают</b>. Включите режим с детектором и проверьте!</p></div>
+  </div>
+  <div class="card hook"><b>Вывод:</b> свет — это поток фотонов (частиц), но движение каждого фотона подчиняется волновым законам. В одних опытах (фотоэффект) ярче проявляются <span class="part">корпускулярные</span> свойства, в других (интерференция, дифракция) — <span class="wave">волновые</span>.</div>
+</section>
+
+<!-- ============ 5. TASKS ============ -->
+<section id="tasks">
+  <h2>📚 Решаем задачи из задачника (глава 19)</h2>
+  <div class="card">
+    <div class="row">
+      <button class="btn primary" id="tkRandom">🎲 Случайная задача к доске</button>
+      <span style="font-weight:800;margin-left:.5em">Тема:</span>
+      <button class="btn on" data-tf="all">Все</button>
+      <button class="btn" data-tf="ph">Фотон (19.1–19.10)</button>
+      <button class="btn" data-tf="pe">Фотоэффект (19.11–19.21)</button>
+      <button class="btn" data-tf="lp">Давление света (19.22–19.28)</button>
+      <button class="btn" data-tf="cp">Эффект Комптона (19.29–19.33)</button>
+      <button class="btn" data-tf="db">Волны де Бройля (19.34–19.41)</button>
+    </div>
+    <details style="margin-top:.7em"><summary>📐 Постоянные и формулы</summary>
+      <div class="consts">
+        <span>h = 6,63·10⁻³⁴ Дж·с</span><span>c = 3·10⁸ м/с</span><span>e = 1,6·10⁻¹⁹ Кл</span><span>mₑ = 9,11·10⁻³¹ кг</span>
+        <span>k = 1,38·10⁻²³ Дж/К</span><span>R = 8,31 Дж/(моль·К)</span><span>N<sub>A</sub> = 6,02·10²³ моль⁻¹</span><span>1 эВ = 1,6·10⁻¹⁹ Дж</span>
+        <span>ε = hν = hc/λ</span><span>m = ε/c² = h/(cλ)</span><span>p = h/λ = ε/c</span><span>hν = A + mv²/2</span><span>eU<sub>з</sub> = mv²/2</span><span>λ₀ = hc/A</span><span>P = E(1+ρ)/c</span><span>Δλ = h/(mₑc)·(1 − cos φ)</span><span>h/(mₑc) = 2,43 пм</span><span>λ = h/p</span><span>m<sub>p</sub> = 1,67·10⁻²⁷ кг</span><span>μ₀ = 4π·10⁻⁷ Гн/м</span><span>G = 6,67·10⁻¹¹ Н·м²/кг²</span><span>M<sub>☉</sub> = 1,99·10³⁰ кг</span><span>Земля–Солнце: 1,5·10¹¹ м</span>
+        <span>Удобно: ε (эВ) ≈ 1240 / λ (нм)</span>
+      </div>
+    </details>
+  </div>
+  <div id="tkList"></div>
+</section>
+<div id="tkModal" class="hidden"><div class="mbox">
+  <div class="row" style="justify-content:space-between"><div class="row"><button class="btn" id="tkPrev">◀</button><button class="btn" id="tkNext">▶</button></div><button class="btn ghost" id="tkClose">✕ Закрыть</button></div>
+  <div id="tkBody"></div>
+</div></div>
+
+<!-- ============ 6. GAMES ============ -->
+<section id="games">
+  <h2>🎮 Игры</h2>
+  <div class="gtabs">
+    <button class="btn on" data-g="g1">⚡ Выбей электрон!</button>
+    <button class="btn" data-g="g2">🏆 Битва команд</button>
+    <button class="btn" data-g="g3">🌊⚪ Волна или частица?</button>
+    <button class="btn" data-g="g4">🔤 Собери слово</button>
+  </div>
+
+  <!-- G1 -->
+  <div class="card game" id="g1">
+    <div id="g1start" class="big-center">
+      <div class="huge">⚡ Выбей электрон!</div>
+      <p class="lead">10 раундов. Выберите фотон, который справится с задачей.<br>Быстрее ответ — больше очков. Помните: <b>яркость не помогает!</b></p>
+      <button class="btn primary" id="g1go" style="font-size:1.4em">Начать</button>
+    </div>
+    <div id="g1play" class="hidden">
+      <div class="topbar"><span class="pill" id="g1round">Раунд 1/10</span><span class="metalbadge" id="g1metal"></span><span class="pill" id="g1score">Очки: 0</span></div>
+      <div class="timer"><div id="g1timer"></div></div>
+      <div class="q" id="g1q"></div>
+      <div class="opts" id="g1opts"></div>
+      <div id="g1fb"></div>
+      <div class="row" style="justify-content:flex-end;margin-top:.8em"><button class="btn primary hidden" id="g1next">Дальше ➜</button></div>
+    </div>
+    <div id="g1end" class="big-center hidden"></div>
+  </div>
+
+  <!-- G2 -->
+  <div class="card game hidden" id="g2">
+    <div id="g2setup" class="big-center">
+      <div class="huge">🏆 Битва команд</div>
+      <p class="lead">Команды отвечают по очереди. Ошиблись — соперник может «перехватить» вопрос за 5 очков.</p>
+      <div class="teams" style="max-width:800px;margin:1em auto">
+        <div class="team"><div class="nm">Команда 1</div><input id="t1n" value="Фотоны"></div>
+        <div class="team"><div class="nm">Команда 2</div><input id="t2n" value="Электроны"></div>
+      </div>
+      <button class="btn primary" id="g2go" style="font-size:1.4em">Начать битву</button>
+    </div>
+    <div id="g2play" class="hidden">
+      <div class="teams">
+        <div class="team" id="tm0"><div class="nm" id="tm0n"></div><div class="sc" id="tm0s">0</div></div>
+        <div class="team" id="tm1"><div class="nm" id="tm1n"></div><div class="sc" id="tm1s">0</div></div>
+      </div>
+      <div class="topbar"><span class="pill" id="g2num">Вопрос 1</span><span class="pill" id="g2turn"></span></div>
+      <div class="q" id="g2q"></div>
+      <div class="opts" id="g2opts"></div>
+      <div id="g2fb"></div>
+      <div class="row" style="justify-content:flex-end;margin-top:.8em"><button class="btn primary hidden" id="g2next">Следующий вопрос ➜</button></div>
+    </div>
+    <div id="g2end" class="big-center hidden"></div>
+  </div>
+
+  <!-- G4 -->
+  <div class="card game hidden" id="g4">
+    <div id="g4play">
+      <div class="topbar"><span class="pill" id="g4round">Слово 1/10</span><span class="pill" id="g4score">Очки: 0</span></div>
+      <div class="q" id="g4def"></div>
+      <div class="slots" id="g4slots"></div>
+      <div class="tiles" id="g4tiles"></div>
+      <div class="row" style="justify-content:center;margin-top:1em">
+        <button class="btn" id="g4hint">💡 Подсказать букву</button>
+        <button class="btn" id="g4mix">🔀 Перемешать</button>
+        <button class="btn" id="g4clear">⟲ Очистить</button>
+        <button class="btn ghost" id="g4skip">Пропустить ➜</button>
+      </div>
+      <div id="g4fb"></div>
+      <div class="row" style="justify-content:flex-end;margin-top:.8em"><button class="btn primary hidden" id="g4next">Следующее слово ➜</button></div>
+    </div>
+    <div id="g4end" class="big-center hidden"></div>
+  </div>
+
+  <!-- G3 -->
+  <div class="card game hidden" id="g3">
+    <div class="topbar"><div class="q" style="margin:0">Нажмите на карточку, затем на корзину. Какое свойство света проявляется?</div><span class="pill" id="g3stat">Ошибок: 0</span></div>
+    <div class="pool" id="g3pool"></div>
+    <div class="buckets">
+      <button class="bucket w" data-b="w"><h3 class="wave">🌊 Волновые свойства</h3><div class="placed" id="g3w"></div></button>
+      <button class="bucket p" data-b="p"><h3 class="part">⚪ Квантовые (корпускулярные) свойства</h3><div class="placed" id="g3p"></div></button>
+    </div>
+    <div id="g3fb"></div>
+    <div class="row" style="justify-content:flex-end;margin-top:.8em"><button class="btn ghost" id="g3reset">⟲ Начать заново</button></div>
+  </div>
+</section>
+<!-- ============ 7. JEOPARDY ============ -->
+<section id="jeopardy">
+  <h2>🟦 Своя игра</h2>
+  <div class="card" id="g5">
+    <div id="jpSetup" class="big-center">
+      <div class="huge">🟦 Своя игра</div>
+      <p class="lead">5 тем × 5 вопросов. Команда выбирает тему и стоимость, отвечает вслух,<br>учитель открывает ответ и начисляет очки (+) или снимает (−).</p>
+      <div class="row" style="justify-content:center;margin:.6em 0"><span style="font-weight:800">Команд:</span>
+        <button class="btn" data-jn="2">2</button><button class="btn on" data-jn="3">3</button><button class="btn" data-jn="4">4</button></div>
+      <div class="teams" id="jpNames" style="max-width:1000px;margin:1em auto"></div>
+      <button class="btn primary" id="jpGo" style="font-size:1.4em">Начать игру</button>
+    </div>
+    <div id="jpPlay" class="hidden">
+      <div class="jgrid" id="jpBoard"></div>
+      <div class="jteams" id="jpScores"></div>
+      <div class="row" style="justify-content:flex-end;margin-top:.8em"><button class="btn ghost" id="jpReset">⟲ Новая игра</button></div>
+    </div>
+    <div id="jpEnd" class="big-center hidden"></div>
+  </div>
+</section>
+<div id="jpModal" class="hidden"><div class="jbox">
+    <div class="jhead"><span id="jpCat"></span><span id="jpVal"></span></div>
+    <div class="jq" id="jpQ"></div>
+    <div class="timer" style="max-width:600px;margin:1em auto"><div id="jpTimer"></div></div>
+    <div class="ja hidden" id="jpA"></div>
+    <div class="row" style="justify-content:center;margin-top:1em">
+      <button class="btn primary" id="jpShow" style="font-size:1.2em">👁 Показать ответ</button>
+    </div>
+    <div class="jaward hidden" id="jpAward"></div>
+    <div class="row" style="justify-content:center;margin-top:1em"><button class="btn ghost" id="jpClose">Закрыть вопрос ✕</button></div>
+  </div></div>
+
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const H=6.626e-34, C=3e8, EV=1.602e-19, ME=9.109e-31;
+const fix=(x,d=2)=>x.toFixed(d).replace('.',',').replace('-','−');
+function sci(x,d=2){const e=Math.floor(Math.log10(Math.abs(x)));const m=x/Math.pow(10,e);return fix(m,d)+'·10<sup>'+String(e).replace('-','−')+'</sup>';}
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+
+function wlRGB(l){
+  if(l<380) return [185,120,255];
+  if(l>780) return [150,40,40];
+  let r=0,g=0,b=0;
+  if(l<440){r=-(l-440)/60;b=1}else if(l<490){g=(l-440)/50;b=1}else if(l<510){g=1;b=-(l-510)/20}
+  else if(l<580){r=(l-510)/70;g=1}else if(l<645){r=1;g=-(l-645)/65}else{r=1}
+  const f=l<420?0.35+0.65*(l-380)/40:l>700?0.35+0.65*(780-l)/80:1;
+  return [r,g,b].map(v=>Math.round(255*Math.pow(v*f,0.8)));
+}
+const wlColor=(l,a=1)=>{const[r,g,b]=wlRGB(l);return `rgba(${r},${g},${b},${a})`;};
+function wlName(l){if(l<380)return'ультрафиолет';if(l<450)return'фиолетовый';if(l<485)return'синий';if(l<500)return'голубой';if(l<565)return'зелёный';if(l<590)return'жёлтый';if(l<625)return'оранжевый';if(l<=780)return'красный';return'инфракрасное';}
+function spectrumCSS(a,b){const st=[];for(let i=0;i<=20;i++){const l=a+(b-a)*i/20;st.push(wlColor(l)+' '+(i*5)+'%');}return `linear-gradient(90deg,${st.join(',')})`;}
+
+/* ---------- sound & confetti ---------- */
+let AC=null,muted=false;
+function beep(ok){if(muted)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);const t=AC.currentTime;
+  if(ok){o.type='triangle';o.frequency.setValueAtTime(660,t);o.frequency.setValueAtTime(990,t+.12);}else{o.type='sawtooth';o.frequency.setValueAtTime(220,t);o.frequency.linearRampToValueAtTime(140,t+.3);}
+  g.gain.setValueAtTime(.15,t);g.gain.exponentialRampToValueAtTime(.001,t+.4);o.start(t);o.stop(t+.45);}catch(e){}}
+$('#snd').onclick=()=>{muted=!muted;$('#snd').textContent=muted?'🔇':'🔊';};
+function confetti(){const cv=$('#confetti'),d=devicePixelRatio||1,W=innerWidth,Hh=innerHeight;cv.width=W*d;cv.height=Hh*d;const ctx=cv.getContext('2d');ctx.setTransform(d,0,0,d,0,0);
+  const P=[...Array(180)].map(()=>({x:Math.random()*W,y:-20-Math.random()*Hh*.6,vx:(Math.random()-.5)*4,vy:2+Math.random()*4,r:Math.random()*6.3,c:`hsl(${Math.random()*360},90%,60%)`}));let f=0;
+  (function st(){ctx.clearRect(0,0,W,Hh);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.r+=.12;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.fillRect(-6,-3,12,7);ctx.restore();});if(++f<260)requestAnimationFrame(st);else ctx.clearRect(0,0,W,Hh);})();}
+
+/* ---------- navigation ---------- */
+const SECTIONS=['intro','photon','photoeffect','duality','tasks','games','jeopardy'];
+let active='intro';
+function show(id){if(!SECTIONS.includes(id))id='intro';active=id;
+  $$('section').forEach(s=>s.classList.toggle('active',s.id===id));
+  $$('nav [data-go]').forEach(b=>b.classList.toggle('on',b.dataset.go===id));
+  try{if(location.hash!=='#'+id)history.replaceState(null,'','#'+id);}catch(e){}
+  requestAnimationFrame(()=>canvases.forEach(c=>c.fit()));window.scrollTo(0,0);}
+$$('nav [data-go]').forEach(b=>b.onclick=()=>show(b.dataset.go));
+addEventListener('hashchange',()=>show(location.hash.slice(1)));
+$('#fs').onclick=()=>{try{if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});else document.exitFullscreen();}catch(e){}};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-reveal]');if(b){$('#'+b.dataset.reveal).classList.toggle('hidden');}});
+
+/* ---------- canvas helper ---------- */
+const canvases=[];
+function setup(cv,onfit){const ctx=cv.getContext('2d');const st={cv,ctx,w:0,h:0};
+  st.fit=()=>{const r=cv.getBoundingClientRect();if(!r.width||!r.height)return;const d=devicePixelRatio||1;const W=Math.round(r.width*d),Hh=Math.round(r.height*d);if(W===cv.width&&Hh===cv.height&&st.w)return;cv.width=W;cv.height=Hh;ctx.setTransform(d,0,0,d,0,0);st.w=r.width;st.h=r.height;onfit&&onfit();};
+  try{new ResizeObserver(st.fit).observe(cv);}catch(e){addEventListener('resize',st.fit);}canvases.push(st);return st;}
+
+/* ---------- 1. timeline ---------- */
+const TL=[
+['≈1670','Исаак Ньютон','p','Свет — поток мельчайших частиц (корпускул). Так легко объяснить прямолинейность лучей и отражение.'],
+['1678','Христиан Гюйгенс','w','Свет — это волна. Волны хорошо объясняют преломление и то, что лучи проходят друг сквозь друга.'],
+['1801','Томас Юнг','w','Опыт с двумя щелями: свет даёт интерференционные полосы. Так умеют только волны!'],
+['1864','Джеймс Максвелл','w','Свет — электромагнитная волна. Казалось, спор окончен навсегда…'],
+['1887','Генрих Герц','p','Открывает фотоэффект: ультрафиолет помогает искре проскочить между электродами.'],
+['1888','Александр Столетов','p','Тщательно исследует фотоэффект и устанавливает его законы. Волновая теория объяснить их не может!'],
+['1900','Макс Планк','p','Гипотеза: энергия излучается порциями — квантами. E = hν, где h = 6,63·10⁻³⁴ Дж·с.'],
+['1905','Альберт Эйнштейн','p','Свет и поглощается, и распространяется квантами — фотонами. Так он объяснил фотоэффект (Нобелевская премия 1921 г.).'],
+['1924','Луи де Бройль','b','Даже электроны обладают волновыми свойствами! Корпускулярно-волновой дуализм — общее свойство природы.']];
+$('#timeline').innerHTML=TL.map(([y,w,t,x])=>{const col=t==='w'?'var(--wave)':t==='p'?'var(--part)':'var(--good)';const lab=t==='w'?'волна':t==='p'?'частица':'дуализм';
+  return `<button class="tl"><span class="tag" style="background:${col};color:#111">${lab}</span><div class="yr">${y}</div><div class="who">${w}</div><div class="hint">👆 нажми</div><div class="txt">${x}</div></button>`;}).join('');
+$$('.tl').forEach(b=>b.onclick=()=>b.classList.toggle('open'));
+
+/* ---------- 2. photon ---------- */
+let L2=530;
+const PH=setup($('#cvPhoton'));
+$('#l2').style.background=spectrumCSS(100,1000);
+function upPhoton(){const l=L2*1e-9,nu=C/l,E=H*nu,Ee=E/EV,p=H/l;
+  $('#l2v').textContent=L2+' нм';$('#l2').value=L2;
+  $('#p_name').innerHTML=`<span style="color:${wlColor(L2)}">${wlName(L2)}</span>`;
+  $('#p_nu').innerHTML=sci(nu)+' Гц';$('#p_EJ').innerHTML=sci(E);$('#p_EeV').textContent=fix(Ee)+' эВ';$('#p_p').innerHTML=sci(p)+' кг·м/с';
+  const m=$('#p_meter');m.style.width=Math.min(100,Ee/12.4*100)+'%';m.style.background=wlColor(L2);}
+$('#l2').oninput=e=>{L2=+e.target.value;upPhoton();};
+$$('[data-l2]').forEach(b=>b.onclick=()=>{L2=+b.dataset.l2;upPhoton();});
+upPhoton();
+function drawPhoton(t){const{ctx,w,h}=PH;if(!w)return;ctx.clearRect(0,0,w,h);
+  const mid=h*.42,A=h*.26,Lpx=L2*w/2400,sigma=w*.13,speed=w/260;const px=((t/16*speed)%(w+4*sigma))-2*sigma;
+  ctx.strokeStyle='rgba(255,255,255,.12)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,mid);ctx.lineTo(w,mid);ctx.stroke();
+  ctx.lineWidth=4;ctx.strokeStyle=wlColor(L2);ctx.shadowColor=wlColor(L2);ctx.shadowBlur=14;ctx.beginPath();
+  for(let x=0;x<=w;x+=2){const env=Math.exp(-(((x-px)/sigma)**2));const y=mid-A*env*Math.sin(2*Math.PI*(x-px)/Lpx);x?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.stroke();ctx.shadowBlur=0;
+  // lambda bracket
+  const bx=w*.06,by=h*.08;ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(bx,by);ctx.lineTo(bx+Lpx,by);ctx.moveTo(bx,by-6);ctx.lineTo(bx,by+6);ctx.moveTo(bx+Lpx,by-6);ctx.lineTo(bx+Lpx,by+6);ctx.stroke();
+  ctx.fillStyle='#fff';ctx.font=`800 ${Math.max(14,h*.06)}px Nunito, sans-serif`;ctx.fillText('λ',bx+Lpx/2-5,by+h*.08);
+  ctx.textAlign='right';ctx.fillText('E = '+fix(1240/L2)+' эВ',w-12,h*.1);ctx.textAlign='left';
+  // spectrum bar
+  const sy=h*.82,sh=h*.09;for(let x=0;x<w;x++){const l=100+900*x/w;ctx.fillStyle=wlColor(l);ctx.fillRect(x,sy,1.2,sh);}
+  ctx.fillStyle='rgba(255,255,255,.85)';ctx.font=`700 ${Math.max(11,h*.04)}px Nunito, sans-serif`;
+  ctx.fillText('УФ',w*.05,sy-6);ctx.fillText('видимый свет',w*(380-100)/900,sy-6);ctx.fillText('ИК',w*.85,sy-6);
+  const mx=w*(L2-100)/900;ctx.fillStyle='#fff';ctx.beginPath();ctx.moveTo(mx,sy-2);ctx.lineTo(mx-9,sy-16);ctx.lineTo(mx+9,sy-16);ctx.fill();ctx.fillRect(mx-1.5,sy,3,sh);}
+
+/* ---------- 3. photoeffect ---------- */
+const METALS=[{n:'Цезий',s:'Cs',A:1.9},{n:"Калий",s:"K",A:2.0},{n:'Натрий',s:'Na',A:2.3},{n:'Цинк',s:'Zn',A:4.2},{n:'Медь',s:'Cu',A:4.5},{n:'Платина',s:'Pt',A:5.3}];
+const PE={m:METALS[2],l:400,I:60,U:0,ph:[],el:[],hits:[],fl:[],acc:0,cur:0};
+const PC=setup($('#cvPE'));
+$('#peL').style.background=spectrumCSS(150,900);
+$('#metalBtns').innerHTML=METALS.map((m,i)=>`<button class="btn${i===2?' on':''}" data-m="${i}">${m.n} (${m.s})<br><small>${fix(m.A,1)} эВ</small></button>`).join('');
+$$('[data-m]').forEach(b=>b.onclick=()=>{PE.m=METALS[+b.dataset.m];$$('[data-m]').forEach(x=>x.classList.toggle('on',x===b));upPE();});
+$('#peL').oninput=e=>{PE.l=+e.target.value;upPE();};
+$('#peI').oninput=e=>{PE.I=+e.target.value;upPE();};
+$('#peU').oninput=e=>{PE.U=+e.target.value;upPE();};
+function upPE(){const E=1240/PE.l,A=PE.m.A,Ek=E-A;
+  $('#peLv').textContent=PE.l+' нм ('+wlName(PE.l)+')';$('#peIv').textContent=PE.I+' %';$('#peUv').textContent=(PE.U>0?'+':'')+fix(PE.U,1)+' В';
+  $('#peE').textContent=fix(E)+' эВ';$('#peA').textContent=fix(A,1)+' эВ';
+  $('#peEk').textContent=Ek>0?fix(Ek)+' эВ':'0 — нет вылета';
+  $('#peUz').textContent=Ek>0?fix(Ek)+' В':'—';
+  $('#peLkr').textContent=Math.round(1240/A)+' нм';
+  $('#peV').textContent=Ek>0?Math.round(Math.sqrt(2*Ek*EV/ME)/1000).toLocaleString('ru-RU')+' км/с':'—';
+  $('#phDot').style.background=wlColor(PE.l);}
+upPE();
+function G(){const w=PC.w,h=PC.h;return{tx0:w*.17,tx1:w*.97,ty0:h*.06,ty1:h*.68,cx:w*.26,ax:w*.87,py0:h*.15,py1:h*.6,lx:w*.06,ly:h*.06,cy:h*.86};}
+function stepPE(now){const{ctx,w,h}=PC;if(!w)return;const g=G(),E=1240/PE.l,A=PE.m.A,cs=g.cx+9;
+  // spawn photons
+  PE.acc+=PE.I/100*1.5;while(PE.acc>=1){PE.acc--;if(PE.ph.length<260)PE.ph.push({t:0,ty:g.py0+Math.random()*(g.py1-g.py0)});}
+  for(const p of PE.ph){p.t+=0.028;if(p.t>=1){p.dead=1;const ok=E>A;PE.fl.push({x:cs,y:p.ty,life:1,ok});
+      if(ok&&Math.random()<.6&&PE.el.length<400)PE.el.push({x:cs,y:p.ty,K0:(E-A)*Math.sqrt(Math.random()),dir:1,vy:(Math.random()-.5)*.5});}}
+  PE.ph=PE.ph.filter(p=>!p.dead);
+  for(const e of PE.el){const s=Math.max(0,(e.x-cs)/(g.ax-cs));let K=e.K0+PE.U*s;const sp=w*.0032*(0.3+Math.sqrt(Math.max(K,0)));
+    e.x+=e.dir*sp;e.y+=e.vy;if(e.y<g.py0)e.y=g.py0;if(e.y>g.py1)e.y=g.py1;
+    K=e.K0+PE.U*Math.max(0,(e.x-cs)/(g.ax-cs));if(e.dir===1&&K<=0)e.dir=-1;
+    if(e.x>=g.ax){e.dead=1;PE.hits.push(now);}else if(e.dir===-1&&e.x<=cs){e.dead=1;}}
+  PE.el=PE.el.filter(e=>!e.dead);
+  while(PE.hits.length&&now-PE.hits[0]>1000)PE.hits.shift();
+  PE.cur+=(PE.hits.length-PE.cur)*.04;
+  // draw
+  ctx.clearRect(0,0,w,h);
+  const fs=Math.max(12,h*.035);ctx.font=`700 ${fs}px Nunito, sans-serif`;
+  // tube
+  ctx.fillStyle='rgba(120,160,255,.06)';ctx.strokeStyle='rgba(150,200,255,.55)';ctx.lineWidth=3;
+  roundRect(ctx,g.tx0,g.ty0,g.tx1-g.tx0,g.ty1-g.ty0,40);ctx.fill();ctx.stroke();
+  ctx.fillStyle='rgba(255,255,255,.35)';ctx.fillText('вакуум',(g.cx+g.ax)/2-fs*1.5,g.ty1-fs*.6);
+  // light cone
+  const col=wlColor(PE.l,0.05+PE.I/100*.14);ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(g.lx,g.ly);ctx.lineTo(cs,g.py0);ctx.lineTo(cs,g.py1);ctx.closePath();ctx.fill();
+  // lamp
+  ctx.fillStyle=wlColor(PE.l);ctx.shadowColor=wlColor(PE.l);ctx.shadowBlur=25*PE.I/100;ctx.beginPath();ctx.arc(g.lx,g.ly,h*.035,0,7);ctx.fill();ctx.shadowBlur=0;
+  ctx.fillStyle='#fff';ctx.fillText('λ = '+PE.l+' нм',g.lx-h*.03,g.ly+h*.09);
+  if(PE.l<380||PE.l>780){ctx.fillStyle='rgba(255,255,255,.6)';ctx.fillText('(невидимое)',g.lx-h*.03,g.ly+h*.09+fs*1.2);}
+  // plates
+  let gr=ctx.createLinearGradient(g.cx-9,0,cs,0);gr.addColorStop(0,'#6b7488');gr.addColorStop(1,'#c9d0dd');ctx.fillStyle=gr;ctx.fillRect(g.cx-9,g.py0,18,g.py1-g.py0);
+  ctx.fillStyle='#9aa3b5';ctx.fillRect(g.ax,g.py0,14,g.py1-g.py0);
+  ctx.fillStyle='#fff';ctx.fillText('катод ('+PE.m.s+')',g.cx-fs*2.2,g.py1+fs*1.3);ctx.fillText('анод',g.ax-fs*.8,g.py1+fs*1.3);
+  // photons
+  for(const p of PE.ph){const x=g.lx+(cs-g.lx)*p.t,y=g.ly+(p.ty-g.ly)*p.t;ctx.fillStyle=wlColor(PE.l,.35);ctx.beginPath();ctx.arc(x,y,7,0,7);ctx.fill();ctx.fillStyle=wlColor(PE.l);ctx.beginPath();ctx.arc(x,y,3.5,0,7);ctx.fill();}
+  for(const f of PE.fl){f.life-=.06;ctx.strokeStyle=f.ok?`rgba(255,255,255,${f.life*.8})`:`rgba(255,80,80,${f.life*.6})`;ctx.lineWidth=2;ctx.beginPath();ctx.arc(f.x,f.y,(1-f.life)*14+2,0,7);ctx.stroke();}
+  PE.fl=PE.fl.filter(f=>f.life>0);
+  for(const e of PE.el){ctx.fillStyle='rgba(76,201,240,.35)';ctx.beginPath();ctx.arc(e.x,e.y,7,0,7);ctx.fill();ctx.fillStyle='#4cc9f0';ctx.beginPath();ctx.arc(e.x,e.y,4,0,7);ctx.fill();}
+  if(E<=A&&PE.I>0){ctx.fillStyle='rgba(239,71,111,.95)';ctx.font=`900 ${fs*1.15}px Nunito, sans-serif`;ctx.textAlign='center';ctx.fillText('hν < A — электроны не вылетают!',(g.cx+g.ax)/2,g.ty0+fs*2.2);ctx.textAlign='left';ctx.font=`700 ${fs}px Nunito, sans-serif`;}
+  // circuit
+  ctx.strokeStyle='#cfd6ea';ctx.lineWidth=3;const bx=w*.5,mx=w*.72,r=Math.min(h*.075,40);
+  ctx.beginPath();ctx.moveTo(g.cx,g.py1);ctx.lineTo(g.cx,g.cy);ctx.lineTo(bx-14,g.cy);ctx.moveTo(bx+14,g.cy);ctx.lineTo(mx-r,g.cy);ctx.moveTo(mx+r,g.cy);ctx.lineTo(g.ax+7,g.cy);ctx.lineTo(g.ax+7,g.py1);ctx.stroke();
+  // battery: long plate = +
+  const pos=PE.U>=0;ctx.lineWidth=4;const lx1=pos?bx+10:bx-10,sx1=pos?bx-10:bx+10;
+  ctx.beginPath();ctx.moveTo(lx1,g.cy-26);ctx.lineTo(lx1,g.cy+26);ctx.stroke();ctx.lineWidth=8;ctx.beginPath();ctx.moveTo(sx1,g.cy-13);ctx.lineTo(sx1,g.cy+13);ctx.stroke();
+  ctx.fillStyle='#fff';ctx.fillText('+',lx1+(pos?8:-18),g.cy-20);ctx.fillText('U = '+(PE.U>0?'+':'')+fix(PE.U,1)+' В',bx-fs*2.4,g.cy+fs*2.2);
+  // ammeter
+  ctx.lineWidth=3;ctx.fillStyle='#0d1430';ctx.beginPath();ctx.arc(mx,g.cy,r,0,7);ctx.fill();ctx.stroke();
+  const frac=Math.min(1,PE.cur/110),ang=Math.PI*(1.15+0.7*frac);ctx.strokeStyle='#ffd166';ctx.beginPath();ctx.moveTo(mx,g.cy+r*.5);ctx.lineTo(mx+Math.cos(ang)*r*.95,g.cy+r*.5+Math.sin(ang)*r*.95);ctx.stroke();
+  ctx.fillStyle='#fff';ctx.font=`900 ${fs}px Nunito, sans-serif`;ctx.fillText('A',mx-fs*.3,g.cy+r*.35);ctx.font=`700 ${fs}px Nunito, sans-serif`;
+  ctx.fillText('I = '+Math.round(PE.cur)+' усл. ед.',mx+r+8,g.cy-r*.4);}
+function roundRect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+
+/* ---------- 4. double slit ---------- */
+const SL={mode:'two',hits:[],fl:[],flow:false,bins:new Array(90).fill(0),k:0};
+const SC=setup($('#cvSlit'));
+const SS=setup($('#cvScreen'),()=>redrawScreen());
+const sinc=x=>Math.abs(x)<1e-6?1:Math.sin(x)/x;
+function prob(u){if(SL.mode==='two')return Math.cos(5*Math.PI*u)**2*sinc(1.7*Math.PI*u)**2;
+  if(SL.mode==='one')return sinc(1.7*Math.PI*(u+.06))**2;
+  return .5*(sinc(1.7*Math.PI*(u-.06))**2+sinc(1.7*Math.PI*(u+.06))**2);}
+function sampleU(){for(let i=0;i<5000;i++){const u=Math.random()*2-1;if(Math.random()<prob(u))return u;}return 0;}
+function addHit(u){const h={u,xf:Math.random()};SL.hits.push(h);const b=Math.min(89,Math.floor((u+1)/2*90));SL.bins[b]++;drawHit(h);$('#slCount').textContent='Фотонов: '+SL.hits.length;}
+function drawHit(hh){const{ctx,w,h}=SS;if(!w)return;const dw=w*.6;const big=SL.hits.length<60;ctx.fillStyle=big?'#b9ffcf':'rgba(124,255,178,.8)';ctx.beginPath();ctx.arc(dw*.05+hh.xf*dw*.9,h/2-hh.u*h*.46,big?4.5:1.7,0,7);ctx.fill();}
+function redrawScreen(){const{ctx,w,h}=SS;if(!w)return;ctx.clearRect(0,0,w,h);SL.hits.forEach(drawHit);}
+function launch(){const u=sampleU();const opens=SL.mode==='one'?[-1]:[-1,1];SL.fl.push({t:0,u,s:opens[Math.floor(Math.random()*opens.length)]});}
+$('#sl1').onclick=()=>launch();
+$('#sl100').onclick=()=>{for(let i=0;i<100;i++)addHit(sampleU());for(let i=0;i<4;i++)launch();};
+$('#slFlow').onclick=()=>{SL.flow=!SL.flow;$('#slFlow').textContent=SL.flow?'⏸ Пауза':'▶ Поток';$('#slFlow').classList.toggle('on',SL.flow);};
+function resetSlit(){SL.hits=[];SL.fl=[];SL.bins.fill(0);redrawScreen();$('#slCount').textContent='Фотонов: 0';}
+$('#slReset').onclick=resetSlit;
+$$('[data-mode]').forEach(b=>b.onclick=()=>{SL.mode=b.dataset.mode;$$('[data-mode]').forEach(x=>x.classList.toggle('on',x===b));resetSlit();});
+function stepSlit(t){
+  if(SL.flow){for(let i=0;i<5;i++)addHit(sampleU());if(++SL.k%5===0)launch();}
+  const{ctx,w,h}=SC;if(!w)return;ctx.clearRect(0,0,w,h);
+  const sx=w*.07,sy=h/2,bx=w*.45,d=h*.13,scr=w*.93,ph=(t/16)*1.2,sp=w*.045;
+  const slits=SL.mode==='one'?[sy-d/2]:[sy-d/2,sy+d/2];
+  ctx.lineWidth=2;
+  for(let k=0;k<12;k++){const r=(ph+k*sp)%(bx-sx);ctx.strokeStyle=`rgba(124,255,178,${.22*(1-r/(bx-sx))})`;ctx.beginPath();ctx.arc(sx,sy,r,-.5,.5);ctx.stroke();}
+  if(SL.mode!=='detect')for(const s of slits)for(let k=0;k<14;k++){const r=(ph+k*sp)%(scr-bx);ctx.strokeStyle=`rgba(124,255,178,${.2*(1-r/(scr-bx))})`;ctx.beginPath();ctx.arc(bx,s,r,-1.25,1.25);ctx.stroke();}
+  // source
+  ctx.fillStyle='#7cffb2';ctx.shadowColor='#7cffb2';ctx.shadowBlur=20;ctx.beginPath();ctx.arc(sx,sy,h*.03,0,7);ctx.fill();ctx.shadowBlur=0;
+  // barrier
+  ctx.fillStyle='#8a93ad';const gap=12;
+  ctx.fillRect(bx-5,0,10,sy-d/2-gap/2);ctx.fillRect(bx-5,sy-d/2+gap/2,10,d-gap);ctx.fillRect(bx-5,sy+d/2+gap/2,10,h-(sy+d/2+gap/2));
+  if(SL.mode==='one')ctx.fillStyle='#ef476f',ctx.fillRect(bx-5,sy+d/2-gap/2,10,gap);
+  if(SL.mode==='detect'){ctx.font=`${h*.07}px sans-serif`;ctx.fillText('👁',bx+10,sy-d/2+h*.025);ctx.fillText('👁',bx+10,sy+d/2+h*.025);}
+  // screen
+  ctx.fillStyle='#e8ecf8';ctx.fillRect(scr,h*.04,8,h*.92);
+  const fs=Math.max(12,h*.045);ctx.font=`700 ${fs}px Nunito, sans-serif`;ctx.fillStyle='#fff';ctx.fillText('источник',sx-fs,sy+h*.1);ctx.fillText('щели',bx-fs*1.2,h-fs*.5);ctx.fillText('экран',scr-fs*2.6,h-fs*.5);
+  // flights
+  for(const f of SL.fl){f.t+=0.025;let x,y;const syl=sy+f.s*d/2,ty=sy-f.u*h*.46;
+    if(f.t<1){x=sx+(bx-sx)*f.t;y=sy+(syl-sy)*f.t;}else{const q=f.t-1;x=bx+(scr-bx)*q;y=syl+(ty-syl)*q;}
+    ctx.fillStyle='rgba(124,255,178,.35)';ctx.beginPath();ctx.arc(x,y,9,0,7);ctx.fill();ctx.fillStyle='#eafff2';ctx.beginPath();ctx.arc(x,y,4.5,0,7);ctx.fill();
+    if(f.t>=2){f.dead=1;addHit(f.u);}}
+  SL.fl=SL.fl.filter(f=>!f.dead);
+  // histogram on screen canvas
+  const S=SS;if(!S.w)return;const c2=S.ctx,hx=S.w*.64;c2.clearRect(hx,0,S.w-hx,S.h);
+  c2.fillStyle='rgba(255,255,255,.06)';c2.fillRect(hx,0,S.w-hx,S.h);
+  const mx=Math.max(1,...SL.bins),bh=S.h*.92/90;
+  for(let i=0;i<90;i++){const u=(i+.5)/90*2-1,y=S.h/2-u*S.h*.46;const len=(S.w-hx-10)*SL.bins[i]/mx;c2.fillStyle='rgba(124,255,178,.85)';c2.fillRect(hx+4,y-bh/2,len,bh+.5);}
+  c2.fillStyle='#fff';c2.font=`700 ${Math.max(11,S.h*.04)}px Nunito, sans-serif`;c2.fillText('сколько попало',hx+6,S.h*.05);
+}
+
+/* ---------- main loop ---------- */
+function loop(t){if(active==='photon')drawPhoton(t);else if(active==='photoeffect')stepPE(t);else if(active==='duality')stepSlit(t);requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+
+/* ---------- games tabs ---------- */
+$$('[data-g]').forEach(b=>b.onclick=()=>{$$('[data-g]').forEach(x=>x.classList.toggle('on',x===b));$$('.game').forEach(g=>g.classList.toggle('hidden',g.id!==b.dataset.g));});
+
+/* ---------- G1: knock out electron ---------- */
+const G1={round:0,score:0,timer:null,left:0,locked:false,q:null};
+const INT=['слабый луч','тусклая лампа','яркий прожектор','мощный лазер','средняя яркость'];
+function r5(x){return Math.round(x/5)*5;}
+function genSet(lo,hi,n){const s=[];let guard=0;while(s.length<n&&guard++<500){const v=r5(rnd(lo,hi));if(s.every(x=>Math.abs(x-v)>=20))s.push(v);}while(s.length<n)s.push(r5(hi)+s.length*20);return s;}
+function g1new(){const m=METALS[Math.floor(Math.random()*METALS.length)],lk=1240/m.A,type=Math.random()<.65?'one':'fast';let ls,correct;
+  if(type==='one'){correct=r5(rnd(Math.max(120,lk*.5),lk*.9));ls=[correct,...genSet(lk*1.1,Math.min(1100,Math.max(lk*2.4,lk*1.1+200)),3)];}
+  else{ls=genSet(Math.max(120,lk*.4),lk*.95,4);correct=Math.min(...ls);}
+  const ints=shuffle(INT.slice());const opts=shuffle(ls.map((l,i)=>({l,int:ints[i]})));
+  if(type==='one'){const c=opts.find(o=>o.l===correct);if(Math.random()<.6){const strong=opts.find(o=>o.int==='мощный лазер');if(strong&&strong!==c){strong.int=c.int;c.int='слабый луч';}}}
+  return{m,type,opts,correct};}
+function g1start(){G1.round=0;G1.score=0;$('#g1start').classList.add('hidden');$('#g1end').classList.add('hidden');$('#g1play').classList.remove('hidden');g1round();}
+function g1round(){G1.round++;G1.locked=false;const q=G1.q=g1new();
+  $('#g1round').textContent=`Раунд ${G1.round}/10`;$('#g1score').textContent='Очки: '+G1.score;
+  $('#g1metal').innerHTML=`<span class="sym">${q.m.s}</span><span>${q.m.n}<br><small>A = ${fix(q.m.A,1)} эВ</small></span>`;
+  $('#g1q').textContent=q.type==='one'?'Какой фотон выбьет электрон из этого металла?':'Все фотоны выбивают электроны. Какой даст самый БЫСТРЫЙ электрон?';
+  $('#g1opts').innerHTML=q.opts.map((o,i)=>{const vis=o.l>=380&&o.l<=780;const bg=vis?wlColor(o.l):o.l<380?'linear-gradient(135deg,#7b2ff7,#c08cff)':'linear-gradient(135deg,#5a1010,#a33)';const tc=vis&&o.l>420&&o.l<620?'#111':'#fff';
+    return `<button class="opt" data-i="${i}" style="background:${bg};color:${tc}">λ = ${o.l} нм<small>${o.l<380?'ультрафиолет':o.l>780?'инфракрасный':wlName(o.l)} · ${o.int}</small></button>`;}).join('');
+  $$('#g1opts .opt').forEach(b=>b.onclick=()=>g1answer(+b.dataset.i));
+  $('#g1fb').innerHTML='';$('#g1next').classList.add('hidden');
+  G1.left=20;clearInterval(G1.timer);$('#g1timer').style.width='100%';
+  G1.timer=setInterval(()=>{G1.left-=.1;$('#g1timer').style.width=Math.max(0,G1.left/20*100)+'%';if(G1.left<=0)g1answer(-1);},100);}
+function g1answer(i){if(G1.locked)return;G1.locked=true;clearInterval(G1.timer);const q=G1.q;
+  const ok=i>=0&&q.opts[i].l===q.correct;
+  $$('#g1opts .opt').forEach((b,j)=>{const o=q.opts[j],E=1240/o.l;b.insertAdjacentHTML('beforeend',`<span class="e">E = ${fix(E)} эВ ${E>q.m.A?'> A ✓':'< A ✗'}</span>`);
+    if(o.l===q.correct)b.classList.add('right');else if(j===i)b.classList.add('wrong');});
+  let pts=0;if(ok){pts=100+Math.round(G1.left*5);G1.score+=pts;}
+  $('#g1score').textContent='Очки: '+G1.score;beep(ok);
+  const expl=q.type==='one'?`Фотоэффект возможен, только если энергия фотона hν = 1240/λ (эВ) больше работы выхода A = ${fix(q.m.A,1)} эВ, т. е. λ < λкр = ${Math.round(1240/q.m.A)} нм. Яркость (мощный лазер!) не помогает — она меняет лишь число фотонов.`
+    :`Eк max = hν − A. Чем короче длина волны, тем больше энергия фотона и тем быстрее электрон. Самый быстрый — у λ = ${q.correct} нм: Eк = ${fix(1240/q.correct-q.m.A)} эВ.`;
+  $('#g1fb').innerHTML=`<div class="fb ${ok?'ok':'no'}"><b>${ok?'✅ Верно! +'+pts:i<0?'⏰ Время вышло!':'❌ Неверно.'}</b> ${expl}</div>`;
+  $('#g1next').textContent=G1.round>=10?'Итоги 🏁':'Дальше ➜';$('#g1next').classList.remove('hidden');}
+$('#g1go').onclick=g1start;
+$('#g1next').onclick=()=>{if(G1.round>=10){$('#g1play').classList.add('hidden');const e=$('#g1end');e.classList.remove('hidden');
+  const st=G1.score>=1300?'🏆 Квантовые гении!':G1.score>=800?'🥈 Отличные физики!':'🥉 Есть куда расти — попробуем ещё?';
+  e.innerHTML=`<div class="huge">${G1.score} очков</div><p class="lead">${st}</p><button class="btn primary" id="g1again" style="font-size:1.3em">Сыграть ещё раз</button>`;$('#g1again').onclick=g1start;confetti();beep(true);}else g1round();};
+
+/* ---------- G2: team quiz ---------- */
+const QUIZ=[
+['От чего зависит энергия одного фотона?',['От частоты (длины волны) света','От интенсивности света','От площади освещаемой поверхности','От времени освещения'],'E = hν — энергия фотона определяется только частотой.'],
+['Чему равна постоянная Планка?',['6,63·10⁻³⁴ Дж·с','3·10⁸ м/с','1,6·10⁻¹⁹ Кл','9,1·10⁻³¹ кг'],'h = 6,63·10⁻³⁴ Дж·с. Остальное — скорость света, заряд и масса электрона.'],
+['Что такое фотоэффект?',['Вырывание электронов из вещества под действием света','Свечение вещества при нагревании','Отражение света от металла','Разложение света в спектр'],'Фотоэффект открыл Герц (1887), а законы установил Столетов.'],
+['Увеличили интенсивность света, частоту не меняли. Что произойдёт?',['Вырастет число электронов (фототок)','Вырастет скорость электронов','Вырастет работа выхода','Ничего не изменится'],'Больше фотонов → больше выбитых электронов. Энергия каждого электрона прежняя.'],
+['Что такое красная граница фотоэффекта?',['Максимальная длина волны, при которой ещё есть фотоэффект','Минимальная частота красного света','Цвет металла при нагреве','Граница видимого спектра'],'λкр = hc/A. При λ > λкр фотоэффекта нет.'],
+['Как записывается уравнение Эйнштейна для фотоэффекта?',['hν = A + mv²/2','E = mc²','hν = A − mv²/2','F = ma'],'Энергия фотона = работа выхода + кинетическая энергия электрона.'],
+['Фотон какого цвета несёт больше энергии?',['Фиолетового','Красного','Одинаково','Зависит от яркости'],'У фиолетового света короче волна и больше частота → больше энергия.'],
+['Работа выхода цинка 4,2 эВ. Вызовет ли фотоэффект видимый свет (1,6–3,3 эВ)?',['Нет, ни при какой яркости','Да, любой','Только очень яркий','Только красный'],'Энергия видимого фотона меньше 4,2 эВ — нужен ультрафиолет.'],
+['Энергия фотона 5 эВ, работа выхода 2 эВ. Чему равна макс. кинетическая энергия электрона?',['3 эВ','7 эВ','2,5 эВ','10 эВ'],'Eк = hν − A = 5 − 2 = 3 эВ.'],
+['Какое явление доказывает волновую природу света?',['Интерференция','Фотоэффект','Эффект Комптона','Красная граница фотоэффекта'],'Интерференцию и дифракцию дают только волны.'],
+['Кто объяснил фотоэффект, предположив, что свет состоит из квантов?',['Альберт Эйнштейн','Исаак Ньютон','Александр Столетов','Генрих Герц'],'Эйнштейн, 1905 г. — за это он получил Нобелевскую премию.'],
+['Чему равна масса покоя фотона?',['Нулю','Массе электрона','1 а. е. м.','Бесконечности'],'Фотон не может покоиться: он всегда летит со скоростью света.'],
+['Импульс фотона вычисляется по формуле…',['p = h/λ','p = hλ','p = mv²','p = λ/h'],'Чем короче волна, тем больше импульс фотона.'],
+['Запирающее напряжение 2 В. Чему равна макс. кинетическая энергия фотоэлектронов?',['2 эВ','1 эВ','4 эВ','0,5 эВ'],'eUз = Eк max → 2 эВ.']];
+const G2={qs:[],i:0,sc:[0,0],turn:0,phase:'main',names:['','']};
+function g2start(){G2.names=[$('#t1n').value||'Команда 1',$('#t2n').value||'Команда 2'];G2.qs=shuffle(QUIZ.slice()).slice(0,12).map(([q,o,e])=>({q,e,o:shuffle(o.map((t,k)=>({t,ok:k===0})))}));
+  G2.i=0;G2.sc=[0,0];$('#tm0n').textContent=G2.names[0];$('#tm1n').textContent=G2.names[1];
+  $('#g2setup').classList.add('hidden');$('#g2end').classList.add('hidden');$('#g2play').classList.remove('hidden');g2show();}
+function g2scores(){[0,1].forEach(k=>{$('#tm'+k+'s').textContent=G2.sc[k];$('#tm'+k).classList.toggle('act',G2.turn===k);});}
+function g2show(){const q=G2.qs[G2.i];G2.turn=G2.i%2;G2.phase='main';g2scores();
+  $('#g2num').textContent=`Вопрос ${G2.i+1} из ${G2.qs.length}`;$('#g2turn').textContent='Отвечает: '+G2.names[G2.turn];
+  $('#g2q').textContent=q.q;
+  $('#g2opts').innerHTML=q.o.map((o,k)=>`<button class="opt qopt" data-k="${k}"><span class="let">${'АБВГ'[k]}</span>${o.t}</button>`).join('');
+  $$('#g2opts .opt').forEach(b=>b.onclick=()=>g2answer(+b.dataset.k));$('#g2fb').innerHTML='';$('#g2next').classList.add('hidden');}
+function g2reveal(msg,ok){const q=G2.qs[G2.i];$$('#g2opts .opt').forEach((b,k)=>{b.disabled=true;if(q.o[k].ok)b.classList.add('right');});
+  $('#g2fb').innerHTML=`<div class="fb ${ok?'ok':'no'}"><b>${msg}</b> ${q.e}</div>`;g2scores();
+  $('#g2next').textContent=G2.i>=G2.qs.length-1?'Итоги 🏁':'Следующий вопрос ➜';$('#g2next').classList.remove('hidden');}
+function g2answer(k){const q=G2.qs[G2.i],b=$$('#g2opts .opt')[k];if(b.disabled)return;
+  if(q.o[k].ok){beep(true);if(G2.phase==='main'){G2.sc[G2.turn]+=10;g2reveal(`✅ Верно! +10 команде «${G2.names[G2.turn]}».`,true);}else{G2.sc[G2.turn]+=5;g2reveal(`✅ Перехват удался! +5 команде «${G2.names[G2.turn]}».`,true);}}
+  else{beep(false);b.classList.add('wrong');b.disabled=true;
+    if(G2.phase==='main'){G2.phase='steal';G2.turn=1-G2.turn;g2scores();$('#g2turn').textContent='Перехват: '+G2.names[G2.turn];
+      $('#g2fb').innerHTML=`<div class="fb no"><b>❌ Неверно!</b> Команда «${G2.names[G2.turn]}» может перехватить вопрос и получить 5 очков.</div>`;}
+    else g2reveal('❌ Никто не угадал.',false);}}
+$('#g2go').onclick=g2start;
+$('#g2next').onclick=()=>{if(G2.i>=G2.qs.length-1){$('#g2play').classList.add('hidden');const e=$('#g2end');e.classList.remove('hidden');
+  const [a,b]=G2.sc,win=a===b?'🤝 Ничья! Обе команды — молодцы!':`🏆 Победила команда «${G2.names[a>b?0:1]}»!`;
+  e.innerHTML=`<div class="huge">${win}</div><p class="lead">${G2.names[0]}: <b>${a}</b> &nbsp;—&nbsp; ${G2.names[1]}: <b>${b}</b></p><button class="btn primary" id="g2again" style="font-size:1.3em">Новая битва</button>`;
+  $('#g2again').onclick=()=>{$('#g2end').classList.add('hidden');$('#g2setup').classList.remove('hidden');};confetti();beep(true);}else{G2.i++;g2show();}};
+
+/* ---------- G3: sort ---------- */
+const SORT=[
+['Интерференция в мыльной плёнке','w','Цветные разводы — результат сложения световых волн.'],
+['Дифракция на решётке','w','Огибание препятствий и спектр решётки — волновые явления.'],
+['Радужные блики на CD-диске','w','Дорожки диска работают как дифракционная решётка.'],
+['Поляризация света (поляроидные очки)','w','Поляризация доказывает, что свет — поперечная волна.'],
+['Разложение света призмой','w','Дисперсия: показатель преломления зависит от длины волны.'],
+['Полосы в опыте Юнга','w','Классическое доказательство волновой природы света.'],
+['Фотоэффект','p','Электрон поглощает ровно один фотон целиком.'],
+['Красная граница фотоэффекта','p','Важна энергия одного кванта hν, а не яркость.'],
+['Работа солнечной батареи','p','Фотоны выбивают электроны в полупроводнике — внутренний фотоэффект.'],
+['Загар от УФ, а не от ИК','p','Только УФ-фотон несёт достаточно энергии для химической реакции.'],
+['Отдельные вспышки на экране при очень слабом свете','p','Свет приходит неделимыми порциями — фотонами.'],
+['Линейчатые спектры атомов','p','Атом излучает фотоны строго определённых энергий.']];
+const G3={sel:null,err:0,left:0};
+function g3init(){G3.sel=null;G3.err=0;G3.left=SORT.length;$('#g3w').innerHTML='';$('#g3p').innerHTML='';$('#g3fb').innerHTML='';$('#g3stat').textContent='Ошибок: 0';
+  $('#g3pool').innerHTML=shuffle(SORT.map((s,i)=>i)).map(i=>`<button class="chip" data-s="${i}">${SORT[i][0]}</button>`).join('');
+  $$('#g3pool .chip').forEach(c=>c.onclick=e=>{e.stopPropagation();$$('#g3pool .chip').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');G3.sel=c;});}
+$$('.bucket').forEach(b=>b.onclick=()=>{const c=G3.sel;if(!c){$('#g3fb').innerHTML='<div class="fb no">Сначала выберите карточку 👆</div>';return;}
+  const [name,type,why]=SORT[+c.dataset.s];
+  if(type===b.dataset.b){beep(true);c.remove();G3.sel=null;G3.left--;$('#g3'+type).insertAdjacentHTML('beforeend',`<span>${name}</span>`);
+    $('#g3fb').innerHTML=`<div class="fb ok"><b>✅ ${name}.</b> ${why}</div>`;
+    if(!G3.left){$('#g3fb').innerHTML=`<div class="fb ok" style="font-size:1.3em"><b>🎉 Всё разложено! Ошибок: ${G3.err}.</b> Свет проявляет и волновые, и квантовые свойства — это и есть дуализм.</div>`;confetti();}}
+  else{beep(false);G3.err++;$('#g3stat').textContent='Ошибок: '+G3.err;c.classList.remove('shake');void c.offsetWidth;c.classList.add('shake');
+    $('#g3fb').innerHTML=`<div class="fb no"><b>❌ Подумайте ещё.</b> Подсказка: ${why}</div>`;}});
+$('#g3reset').onclick=g3init;g3init();
+
+/* ---------- 5. tasks ---------- */
+const TASKS=[
+{n:'19.1',t:'ph',q:'Найти массу m фотона: а) красных лучей света (λ = 700 нм); б) рентгеновских лучей (λ = 25 нм); в) гамма-лучей (λ = 1,24 нм).',
+ h:'Масса фотона: m = ε/c², а ε = hc/λ. Значит, <b>m = h/(cλ)</b>.',
+ s:'m = h/(cλ)<br>а) m = 6,63·10⁻³⁴ / (3·10⁸ · 7·10⁻⁷) = 3,16·10⁻³⁶ кг<br>б) m = 6,63·10⁻³⁴ / (3·10⁸ · 2,5·10⁻⁸) = 8,84·10⁻³⁵ кг<br>в) m = 6,63·10⁻³⁴ / (3·10⁸ · 1,24·10⁻⁹) = 1,78·10⁻³³ кг<br><i>Чем короче волна, тем «тяжелее» фотон.</i>',
+ a:'а) 3,2·10⁻³⁶ кг; б) 8,8·10⁻³⁵ кг; в) 1,8·10⁻³³ кг'},
+{n:'19.2',t:'ph',q:'Найти энергию ε, массу m и импульс p фотона, если соответствующая ему длина волны λ = 1,6 нм.',
+ h:'ε = hc/λ; m = ε/c²; p = h/λ.',
+ s:'ε = 6,63·10⁻³⁴ · 3·10⁸ / 1,6·10⁻⁹ = 1,24·10⁻¹⁶ Дж ≈ 777 эВ<br>m = ε/c² = 1,24·10⁻¹⁶ / 9·10¹⁶ = 1,38·10⁻³³ кг<br>p = h/λ = 6,63·10⁻³⁴ / 1,6·10⁻⁹ = 4,14·10⁻²⁵ кг·м/с',
+ a:'ε = 1,24·10⁻¹⁶ Дж (≈ 777 эВ); m = 1,38·10⁻³³ кг; p = 4,14·10⁻²⁵ кг·м/с'},
+{n:'19.3',t:'ph',q:'Ртутная дуга имеет мощность N = 125 Вт. Какое число фотонов испускается в единицу времени в излучении с длинами волн λ, равными: 612,1; 579,1; 546,1; 404,7; 365,5; 253,7 нм? Интенсивности этих линий составляют соответственно 2; 4; 4; 2,9; 2,5; 4 % интенсивности ртутной дуги. Считать, что 80 % мощности дуги идёт на излучение.',
+ h:'Мощность излучения: 0,8·N = 100 Вт. Мощность линии Pᵢ = kᵢ·100 Вт. Число фотонов в секунду n = Pᵢ/ε = Pᵢλ/(hc).',
+ s:'hc = 1,99·10⁻²⁵ Дж·м<table><tr><th>λ, нм</th><th>k, %</th><th>P, Вт</th><th>n, с⁻¹</th></tr><tr><td>612,1</td><td>2</td><td>2</td><td>6,2·10¹⁸</td></tr><tr><td>579,1</td><td>4</td><td>4</td><td>1,16·10¹⁹</td></tr><tr><td>546,1</td><td>4</td><td>4</td><td>1,10·10¹⁹</td></tr><tr><td>404,7</td><td>2,9</td><td>2,9</td><td>5,9·10¹⁸</td></tr><tr><td>365,5</td><td>2,5</td><td>2,5</td><td>4,6·10¹⁸</td></tr><tr><td>253,7</td><td>4</td><td>4</td><td>5,1·10¹⁸</td></tr></table>Пример: n = 2 · 612,1·10⁻⁹ / 1,99·10⁻²⁵ = 6,2·10¹⁸ с⁻¹',
+ a:'6,2·10¹⁸; 1,16·10¹⁹; 1,1·10¹⁹; 5,9·10¹⁸; 4,6·10¹⁸; 5,1·10¹⁸ фотонов/с'},
+{n:'19.4',t:'ph',q:'С какой скоростью v должен двигаться электрон, чтобы его кинетическая энергия была равна энергии фотона с длиной волны λ = 520 нм?',
+ h:'mv²/2 = hc/λ → v = √(2hc/(mλ)).',
+ s:'ε = hc/λ = 1,99·10⁻²⁵ / 5,2·10⁻⁷ = 3,83·10⁻¹⁹ Дж (2,39 эВ)<br>v = √(2ε/m) = √(2 · 3,83·10⁻¹⁹ / 9,11·10⁻³¹) = 9,2·10⁵ м/с',
+ a:'v ≈ 9,2·10⁵ м/с (≈ 920 км/с)'},
+{n:'19.5',t:'ph',q:'С какой скоростью v должен двигаться электрон, чтобы его импульс был равен импульсу фотона с длиной волны λ = 520 нм?',
+ h:'mv = h/λ → v = h/(mλ).',
+ s:'p = h/λ = 6,63·10⁻³⁴ / 5,2·10⁻⁷ = 1,28·10⁻²⁷ кг·м/с<br>v = p/m = 1,28·10⁻²⁷ / 9,11·10⁻³¹ = 1,4·10³ м/с<br><i>Сравните с задачей 19.4: при равных импульсах электрон движется в сотни раз медленнее.</i>',
+ a:'v ≈ 1,4·10³ м/с (1,4 км/с)'},
+{n:'19.6',t:'ph',q:'Какую энергию ε должен иметь фотон, чтобы его масса была равна массе покоя электрона?',
+ h:'ε = mc², где m = mₑ = 9,11·10⁻³¹ кг.',
+ s:'ε = 9,11·10⁻³¹ · (3·10⁸)² = 8,2·10⁻¹⁴ Дж<br>В электронвольтах: 8,2·10⁻¹⁴ / 1,6·10⁻¹⁹ = 5,1·10⁵ эВ = 0,51 МэВ',
+ a:'ε = 8,2·10⁻¹⁴ Дж ≈ 0,51 МэВ'},
+{n:'19.7',t:'ph',q:'Импульс, переносимый монохроматическим пучком фотонов через площадку S = 2 см² за время t = 0,5 мин, равен p = 3·10⁻⁹ кг·м/с. Найти для этого пучка энергию E, падающую на единицу площади за единицу времени.',
+ h:'Для фотонов p = E/c, значит полная энергия E<sub>полн</sub> = pc. Искомая величина E = E<sub>полн</sub>/(S·t).',
+ s:'E<sub>полн</sub> = 3·10⁻⁹ · 3·10⁸ = 0,9 Дж<br>S = 2·10⁻⁴ м², t = 30 с<br>E = 0,9 / (2·10⁻⁴ · 30) = 150 Дж/(м²·с)',
+ a:'E = 150 Вт/м²'},
+{n:'19.8',t:'ph',q:'При какой температуре T кинетическая энергия молекулы двухатомного газа будет равна энергии фотона с длиной волны λ = 589 нм?',
+ h:'У двухатомной молекулы i = 5 степеней свободы: E = (5/2)kT. Приравнять к hc/λ.',
+ s:'ε = hc/λ = 1,99·10⁻²⁵ / 5,89·10⁻⁷ = 3,38·10⁻¹⁹ Дж<br>(5/2)kT = ε → T = 2ε/(5k) = 2 · 3,38·10⁻¹⁹ / (5 · 1,38·10⁻²³) ≈ 9,8·10³ К',
+ a:'T ≈ 9,8·10³ К'},
+{n:'19.9',t:'ph',q:'При высоких энергиях трудно осуществить условия для измерения экспозиционной дозы рентгеновского и гамма-излучений в рентгенах, поэтому допускается применение рентгена как единицы дозы для излучений с энергией квантов до ε = 3 МэВ. До какой предельной длины волны λ рентгеновского излучения можно употреблять рентген?',
+ h:'λ = hc/ε; 1 МэВ = 1,6·10⁻¹³ Дж.',
+ s:'ε = 3 · 1,6·10⁻¹³ = 4,8·10⁻¹³ Дж<br>λ = 1,99·10⁻²⁵ / 4,8·10⁻¹³ = 4,1·10⁻¹³ м',
+ a:'λ ≈ 4,1·10⁻¹³ м = 0,41 пм (для более коротких волн рентген не применяют)'},
+{n:'19.10',t:'ph',q:'Найти массу m фотона, импульс которого равен импульсу молекулы водорода при температуре t = 20 °C. Скорость молекулы считать равной средней квадратичной скорости.',
+ h:'v<sub>кв</sub> = √(3RT/M); масса молекулы m₀ = M/N<sub>A</sub>; p = m₀v; масса фотона m = p/c.',
+ s:'T = 293 К, M = 2·10⁻³ кг/моль<br>v = √(3 · 8,31 · 293 / 0,002) = 1,91·10³ м/с<br>m₀ = 2·10⁻³ / 6,02·10²³ = 3,32·10⁻²⁷ кг<br>p = 3,32·10⁻²⁷ · 1,91·10³ = 6,35·10⁻²⁴ кг·м/с<br>m = p/c = 6,35·10⁻²⁴ / 3·10⁸ = 2,1·10⁻³² кг',
+ a:'m ≈ 2,1·10⁻³² кг'},
+{n:'19.11',t:'pe',q:'В работе А. Г. Столетова «Актино-электрические исследования» (1888 г.) впервые были установлены основные законы фотоэффекта. Один из результатов его опытов был сформулирован так: «Разряжающим действием обладают лучи самой высокой преломляемости с длиной волны менее 295 нм». Найти работу выхода A электрона из металла, с которым работал А. Г. Столетов.',
+ h:'295 нм — это красная граница λ₀. A = hc/λ₀.',
+ s:'A = 1,99·10⁻²⁵ / 2,95·10⁻⁷ = 6,74·10⁻¹⁹ Дж = 4,2 эВ<br><i>Это близко к работе выхода цинка: Столетов работал с цинковой пластиной.</i>',
+ a:'A ≈ 6,7·10⁻¹⁹ Дж ≈ 4,2 эВ'},
+{n:'19.12',t:'pe',q:'Найти длину волны λ₀ света, соответствующую красной границе фотоэффекта, для лития, натрия, калия и цезия.',
+ h:'λ₀ = hc/A. Работу выхода взять из таблицы задачника. Удобно: λ₀ (нм) ≈ 1240 / A (эВ).',
+ s:'Работа выхода (таблица задачника): Li — 2,4 эВ; Na — 2,3 эВ; K — 2,0 эВ; Cs — 1,9 эВ<table><tr><th>Металл</th><th>A, эВ</th><th>λ₀, нм</th></tr><tr><td>Литий</td><td>2,4</td><td>517</td></tr><tr><td>Натрий</td><td>2,3</td><td>540</td></tr><tr><td>Калий</td><td>2,0</td><td>620</td></tr><tr><td>Цезий</td><td>1,9</td><td>650</td></tr></table><i>В других справочниках работы выхода могут немного отличаться.</i>',
+ a:'Li ≈ 517 нм; Na ≈ 540 нм; K ≈ 620 нм; Cs ≈ 650 нм'},
+{n:'19.13',t:'pe',q:'Длина волны света, соответствующая красной границе фотоэффекта, для некоторого металла λ₀ = 275 нм. Найти минимальную энергию фотона, вызывающего фотоэффект.',
+ h:'Минимальная энергия фотона равна работе выхода: ε<sub>min</sub> = hc/λ₀.',
+ s:'ε<sub>min</sub> = 1,99·10⁻²⁵ / 2,75·10⁻⁷ = 7,2·10⁻¹⁹ Дж = 4,5 эВ',
+ a:'ε<sub>min</sub> ≈ 7,2·10⁻¹⁹ Дж = 4,5 эВ'},
+{n:'19.14',t:'pe',q:'Длина волны света, соответствующая красной границе фотоэффекта, для некоторого металла λ₀ = 275 нм. Найти работу выхода A электрона из металла, максимальную скорость электронов, вырываемых из металла светом с длиной волны λ = 180 нм, и максимальную кинетическую энергию электронов.',
+ h:'A = hc/λ₀; E<sub>к</sub> = hc/λ − A; v = √(2E<sub>к</sub>/m).',
+ s:'A = 1,99·10⁻²⁵ / 2,75·10⁻⁷ = 7,2·10⁻¹⁹ Дж (4,5 эВ)<br>ε = 1,99·10⁻²⁵ / 1,8·10⁻⁷ = 1,1·10⁻¹⁸ Дж (6,9 эВ)<br>E<sub>к</sub> = 1,1·10⁻¹⁸ − 7,2·10⁻¹⁹ = 3,8·10⁻¹⁹ Дж (2,4 эВ)<br>v = √(2 · 3,8·10⁻¹⁹ / 9,11·10⁻³¹) = 9,1·10⁵ м/с',
+ a:'A = 4,5 эВ; v ≈ 9,1·10⁵ м/с; E<sub>к</sub> ≈ 3,8·10⁻¹⁹ Дж'},
+{n:'19.15',t:'pe',q:'Найти частоту ν света, вырывающего из металла электроны, которые полностью задерживаются разностью потенциалов U = 3 В. Фотоэффект прекращается при частоте света ν₀ = 6·10¹⁴ Гц. Найти работу выхода A электрона из металла.',
+ h:'A = hν₀; hν = hν₀ + eU → ν = ν₀ + eU/h.',
+ s:'ν = 6·10¹⁴ + 1,6·10⁻¹⁹ · 3 / 6,63·10⁻³⁴ = 6·10¹⁴ + 7,2·10¹⁴ = 1,32·10¹⁵ Гц<br>A = hν₀ = 6,63·10⁻³⁴ · 6·10¹⁴ = 4·10⁻¹⁹ Дж ≈ 2,5 эВ',
+ a:'ν ≈ 1,3·10¹⁵ Гц; A ≈ 4·10⁻¹⁹ Дж ≈ 2,5 эВ'},
+{n:'19.16',t:'pe',q:'Найти задерживающую разность потенциалов U для электронов, вырываемых при освещении калия светом с длиной волны λ = 330 нм.',
+ h:'eU = hc/λ − A, работа выхода калия A = 2,0 эВ.',
+ s:'ε = 1240 / 330 = 3,76 эВ<br>eU = 3,76 − 2,0 = 1,76 эВ → U = 1,76 В',
+ a:'U ≈ 1,8 В'},
+{n:'19.17',t:'pe',q:'При фотоэффекте с платиновой поверхности электроны полностью задерживаются разностью потенциалов U = 0,8 В. Найти длину волны λ применяемого облучения и предельную длину волны λ₀, при которой ещё возможен фотоэффект.',
+ h:'hc/λ = A + eU; λ₀ = hc/A. Работа выхода платины A = 5,3 эВ.',
+ s:'ε = A + eU = 5,3 + 0,8 = 6,1 эВ → λ = 1240 / 6,1 ≈ 203 нм<br>λ₀ = 1240 / 5,3 ≈ 234 нм',
+ a:'λ ≈ 203 нм; λ₀ ≈ 234 нм'},
+{n:'19.18',t:'pe',q:'Фотоны с энергией ε = 4,9 эВ вырывают электроны из металла с работой выхода A = 4,5 эВ. Найти максимальный импульс p<sub>max</sub>, передаваемый поверхности металла при вылете каждого электрона.',
+ h:'E<sub>к</sub> = ε − A. По закону сохранения импульса поверхность получает импульс отдачи, равный импульсу электрона: p = √(2mE<sub>к</sub>).',
+ s:'E<sub>к</sub> = 4,9 − 4,5 = 0,4 эВ = 6,4·10⁻²⁰ Дж<br>p = √(2 · 9,11·10⁻³¹ · 6,4·10⁻²⁰) = 3,4·10⁻²⁵ кг·м/с',
+ a:'p<sub>max</sub> ≈ 3,4·10⁻²⁵ кг·м/с'},
+{n:'19.19',t:'pe',q:'Найти постоянную Планка h, если известно, что электроны, вырываемые из металла светом с частотой ν₁ = 2,2·10¹⁵ Гц, полностью задерживаются разностью потенциалов U₁ = 6,6 В, а вырываемые светом с частотой ν₂ = 4,6·10¹⁵ Гц — разностью потенциалов U₂ = 16,5 В.',
+ h:'Запишите уравнение Эйнштейна дважды: hν₁ = A + eU₁ и hν₂ = A + eU₂. Вычтите одно из другого — A сократится.',
+ s:'h(ν₂ − ν₁) = e(U₂ − U₁)<br>h = 1,6·10⁻¹⁹ · (16,5 − 6,6) / (4,6·10¹⁵ − 2,2·10¹⁵) = 1,6·10⁻¹⁹ · 9,9 / 2,4·10¹⁵ = 6,6·10⁻³⁴ Дж·с<br><i>Бонус: A = hν₁ − eU₁ ≈ 4·10⁻¹⁹ Дж ≈ 2,5 эВ.</i>',
+ a:'h ≈ 6,6·10⁻³⁴ Дж·с'},
+{n:'19.21',t:'pe',q:'Между электродами фотоэлемента предыдущей задачи приложена задерживающая разность потенциалов U = 1 В. При какой предельной длине волны λ₀ падающего на катод света начинается фотоэффект?',
+ h:'Чтобы электроны долетели до анода против задерживающего поля, им нужна энергия не меньше eU: hc/λ₀ = A + eU.',
+ s:'λ₀ = hc / (A + eU), или в удобных единицах λ₀ (нм) = 1240 / (A (эВ) + 1).<br>Работу выхода A берём из условия задачи 19.20 (её нет в файле). Например, если A = 2,0 эВ (калий), то λ₀ = 1240 / 3,0 ≈ 413 нм.<br><i>Без задерживающего напряжения граница была бы 1240/A; напряжение «сдвигает» её в сторону коротких волн.</i>',
+ a:'λ₀ = hc/(A + eU) — подставьте A из задачи 19.20'},
+{n:'19.22',t:'lp',q:'В опытах П. Н. Лебедева стеклянная крестовина, подвешенная на тонкой нити в откачанном сосуде, имеет на концах два лёгких кружка из платиновой фольги: один зачернён, другой блестящий. Направляя свет на кружок и измеряя угол поворота нити (по зеркальцу), определяют световое давление. Найти световое давление P и световую энергию E, падающую от дуговой лампы в единицу времени на единицу площади кружков. При освещении блестящего кружка отклонение зайчика a = 76 мм по шкале, удалённой от зеркальца на b = 1200 мм. Диаметр кружков d = 5 мм. Расстояние от центра кружка до оси вращения l = 9,2 мм. Коэффициент отражения ρ = 0,5. Постоянная момента кручения нити (M = kα) k = 2,2·10⁻¹¹ Н·м/рад.',
+ h:'Отражённый от зеркальца луч поворачивается на 2α: 2α = a/b. Момент нити M = kα уравновешивает момент силы давления F·l. P = F/S, S = πd²/4. Для поверхности с отражением ρ: P = E(1+ρ)/c.',
+ s:'2α = a/b = 76/1200 = 0,0633 → α = 0,0317 рад<br>M = kα = 2,2·10⁻¹¹ · 0,0317 = 6,97·10⁻¹³ Н·м<br>F = M/l = 6,97·10⁻¹³ / 9,2·10⁻³ = 7,57·10⁻¹¹ Н<br>S = π(5·10⁻³)²/4 = 1,96·10⁻⁵ м²<br>P = F/S = 7,57·10⁻¹¹ / 1,96·10⁻⁵ = 3,86·10⁻⁶ Па<br>E = Pc/(1+ρ) = 3,86·10⁻⁶ · 3·10⁸ / 1,5 ≈ 770 Вт/м²',
+ a:'P ≈ 3,9 мкПа; E ≈ 770 Вт/м²'},
+{n:'19.23',t:'lp',q:'В одном из опытов П. Н. Лебедева при падении света на зачернённый кружок (ρ = 0) угол поворота нити был равен α = 10′. Найти световое давление P и мощность N падающего света. Данные прибора взять из условия задачи 19.22.',
+ h:'Перевести угол в радианы. P = kα/(lS). Для чёрной поверхности E = Pc, мощность N = E·S.',
+ s:'α = 10′ = (10/60)° = 2,91·10⁻³ рад<br>F = kα/l = 2,2·10⁻¹¹ · 2,91·10⁻³ / 9,2·10⁻³ = 6,96·10⁻¹² Н<br>P = F/S = 6,96·10⁻¹² / 1,96·10⁻⁵ = 3,5·10⁻⁷ Па<br>E = Pc = 3,5·10⁻⁷ · 3·10⁸ = 106 Вт/м²<br>N = E·S = 106 · 1,96·10⁻⁵ = 2,1·10⁻³ Вт',
+ a:'P ≈ 0,35 мкПа; N ≈ 2,1 мВт'},
+{n:'19.24',t:'lp',q:'В одном из опытов П. Н. Лебедева мощность падающего на кружки монохроматического света (λ = 560 нм) была N = 8,33 мВт. Найти число фотонов I, падающих в единицу времени на единицу площади кружков, и импульс силы FΔτ, сообщённый единице площади кружков за единицу времени, для ρ = 0; 0,5; 1. Данные прибора взять из условия задачи 19.22.',
+ h:'E = N/S; число фотонов I = E/ε = Eλ/(hc). Импульс, сообщаемый единице площади за единицу времени, численно равен давлению: E(1+ρ)/c.',
+ s:'S = 1,96·10⁻⁵ м² → E = 8,33·10⁻³ / 1,96·10⁻⁵ = 424 Вт/м²<br>I = Eλ/(hc) = 424 · 5,6·10⁻⁷ / 1,99·10⁻²⁵ = 1,2·10²¹ м⁻²·с⁻¹<br>E/c = 1,41·10⁻⁶ Н·с/(м²·с)<table><tr><th>ρ</th><th>0</th><th>0,5</th><th>1</th></tr><tr><td>FΔτ, 10⁻⁶ Н·с/(м²·с)</td><td>1,41</td><td>2,12</td><td>2,83</td></tr></table>',
+ a:'I ≈ 1,2·10²¹ м⁻²·с⁻¹; FΔτ ≈ 1,4·10⁻⁶; 2,1·10⁻⁶; 2,8·10⁻⁶ Н·с/(м²·с)'},
+{n:'19.25',t:'lp',q:'Русский астроном Ф. А. Бредихин объяснил форму кометных хвостов световым давлением солнечных лучей. Найти световое давление P солнечных лучей на абсолютно чёрное тело на таком же расстоянии от Солнца, как Земля. Какую массу m должна иметь частица в кометном хвосте на этом расстоянии, чтобы сила светового давления на неё уравновешивалась силой притяжения Солнцем? Площадь частицы, отражающую все падающие лучи, считать S = 0,5·10⁻¹² м². Солнечная постоянная K = 1,37 кВт/м².',
+ h:'Чёрное тело: P = K/c. Зеркальная частица: F = 2KS/c. Притяжение: F = GmM☉/R², R = 1,5·10¹¹ м.',
+ s:'P = K/c = 1370 / 3·10⁸ = 4,6·10⁻⁶ Па<br>F = 2KS/c = 2 · 4,57·10⁻⁶ · 0,5·10⁻¹² = 4,6·10⁻¹⁸ Н<br>m = FR²/(GM☉) = 4,6·10⁻¹⁸ · (1,5·10¹¹)² / (6,67·10⁻¹¹ · 1,99·10³⁰) ≈ 7,7·10⁻¹⁶ кг',
+ a:'P ≈ 4,6 мкПа; m ≈ 7,7·10⁻¹⁶ кг'},
+{n:'19.26',t:'lp',q:'Найти световое давление P на стенки электрической 100-ваттной лампы. Колба лампы — сферический сосуд радиусом r = 5 см. Стенки лампы отражают 4 % и пропускают 6 % падающего на них света. Считать, что вся потребляемая мощность идёт на излучение.',
+ h:'Интенсивность на стенке I = N/(4πr²). Поглощённый свет (90 %) передаёт импульс I/c, отражённый (4 %) — 2I/c, прошедший (6 %) импульса стенке не передаёт.',
+ s:'I = 100 / (4π · 0,05²) = 3,18·10³ Вт/м²<br>Поглощается 1 − 0,04 − 0,06 = 0,90<br>P = (I/c)(0,90 + 2·0,04) = (3,18·10³ / 3·10⁸) · 0,98 = 1,04·10⁻⁵ Па',
+ a:'P ≈ 10 мкПа'},
+{n:'19.27',t:'lp',q:'На поверхность площадью S = 0,01 м² в единицу времени падает световая энергия E = 1,05 Дж/с. Найти световое давление P в случаях, когда поверхность полностью отражает и полностью поглощает падающие на неё лучи.',
+ h:'Интенсивность I = E/S. Зеркало: P = 2I/c; чёрная поверхность: P = I/c.',
+ s:'I = 1,05 / 0,01 = 105 Вт/м²<br>Отражение: P = 2 · 105 / 3·10⁸ = 7·10⁻⁷ Па<br>Поглощение: P = 105 / 3·10⁸ = 3,5·10⁻⁷ Па',
+ a:'0,7 мкПа (отражает); 0,35 мкПа (поглощает)'},
+{n:'19.28',t:'lp',q:'Монохроматический пучок света (λ = 490 нм), падая по нормали к поверхности, производит световое давление P = 4,9 мкПа. Какое число фотонов I падает в единицу времени на единицу площади этой поверхности? Коэффициент отражения ρ = 0,25.',
+ h:'Каждый фотон передаёт импульс (1+ρ)h/λ (в среднем). P = I·(1+ρ)·h/λ.',
+ s:'I = Pλ / (h(1+ρ)) = 4,9·10⁻⁶ · 4,9·10⁻⁷ / (6,63·10⁻³⁴ · 1,25) = 2,9·10²¹ м⁻²·с⁻¹',
+ a:'I ≈ 2,9·10²¹ фотонов/(м²·с)'},
+{n:'19.29',t:'cp',q:'Рентгеновские лучи с длиной волны λ₀ = 70,8 пм испытывают комптоновское рассеяние на парафине. Найти длину волны λ рентгеновских лучей, рассеянных в направлениях: а) φ = π/2; б) φ = π.',
+ h:'Формула Комптона: Δλ = Λ(1 − cos φ), где Λ = h/(mₑc) = 2,43 пм.',
+ s:'а) cos 90° = 0 → Δλ = 2,43 пм → λ = 70,8 + 2,43 = 73,2 пм<br>б) cos 180° = −1 → Δλ = 4,85 пм → λ = 70,8 + 4,85 = 75,7 пм',
+ a:'а) 73,2 пм; б) 75,7 пм'},
+{n:'19.30',t:'cp',q:'Какова была длина волны λ₀ рентгеновского излучения, если при комптоновском рассеянии этого излучения графитом под углом φ = 60° длина волны рассеянного излучения оказалась равной λ = 25,4 пм?',
+ h:'λ₀ = λ − Λ(1 − cos φ).',
+ s:'Δλ = 2,43 · (1 − 0,5) = 1,21 пм<br>λ₀ = 25,4 − 1,21 = 24,2 пм',
+ a:'λ₀ ≈ 24,2 пм'},
+{n:'19.31',t:'cp',q:'Рентгеновские лучи с длиной волны λ₀ = 20 пм испытывают комптоновское рассеяние под углом φ = 90°. Найти изменение Δλ длины волны при рассеянии, а также энергию W<sub>e</sub> и импульс p электрона отдачи.',
+ h:'Δλ = Λ(1 − cos φ). W<sub>e</sub> = hc/λ₀ − hc/λ. При φ = 90° импульсы фотонов взаимно перпендикулярны: p<sub>e</sub>² = (h/λ₀)² + (h/λ)².',
+ s:'Δλ = 2,43 пм → λ = 22,43 пм<br>W<sub>e</sub> = 1,99·10⁻²⁵ · (1/2·10⁻¹¹ − 1/2,243·10⁻¹¹) = 1,08·10⁻¹⁵ Дж ≈ 6,7 кэВ<br>h/λ₀ = 3,32·10⁻²³; h/λ = 2,96·10⁻²³ кг·м/с<br>p = √(3,32² + 2,96²)·10⁻²³ = 4,4·10⁻²³ кг·м/с',
+ a:'Δλ ≈ 2,4 пм; W<sub>e</sub> ≈ 1,1·10⁻¹⁵ Дж (6,7 кэВ); p ≈ 4,4·10⁻²³ кг·м/с'},
+{n:'19.32',t:'cp',q:'При комптоновском рассеянии энергия падающего фотона распределяется поровну между рассеянным фотоном и электроном отдачи. Угол рассеяния φ = π/2. Найти энергию W и импульс p рассеянного фотона.',
+ h:'Энергия рассеянного фотона вдвое меньше → λ = 2λ₀, т. е. Δλ = λ₀. А при φ = 90° Δλ = Λ = 2,43 пм.',
+ s:'λ₀ = Δλ = 2,43 пм → λ = 4,85 пм<br>W = hc/λ = 1,99·10⁻²⁵ / 4,85·10⁻¹² = 4,1·10⁻¹⁴ Дж ≈ 0,256 МэВ<br>p = h/λ = 6,63·10⁻³⁴ / 4,85·10⁻¹² = 1,37·10⁻²² кг·м/с',
+ a:'W ≈ 4,1·10⁻¹⁴ Дж (0,26 МэВ); p ≈ 1,4·10⁻²² кг·м/с'},
+{n:'19.33',t:'cp',q:'Энергия рентгеновских лучей ε = 0,6 МэВ. Найти энергию W<sub>e</sub> электрона отдачи, если длина волны рентгеновских лучей после комптоновского рассеяния изменилась на 20 %.',
+ h:'λ = 1,2λ₀ → энергия рассеянного фотона ε′ = ε/1,2. W<sub>e</sub> = ε − ε′.',
+ s:'ε′ = 0,6 / 1,2 = 0,5 МэВ<br>W<sub>e</sub> = 0,6 − 0,5 = 0,1 МэВ = 1,6·10⁻¹⁴ Дж',
+ a:'W<sub>e</sub> = 0,1 МэВ'},
+{n:'19.34',t:'db',q:'Найти длину волны де Бройля λ для электронов, прошедших разность потенциалов U₁ = 1 В и U₂ = 100 В.',
+ h:'Кинетическая энергия eU, импульс p = √(2meU), λ = h/p.',
+ s:'U₁ = 1 В: p = √(2 · 9,11·10⁻³¹ · 1,6·10⁻¹⁹ · 1) = 5,4·10⁻²⁵ кг·м/с → λ = 6,63·10⁻³⁴ / 5,4·10⁻²⁵ = 1,23·10⁻⁹ м<br>U₂ = 100 В: p в 10 раз больше → λ = 1,23·10⁻¹⁰ м<br><i>Удобно запомнить: λ (нм) ≈ 1,23/√U</i>',
+ a:'λ₁ ≈ 1,23 нм; λ₂ ≈ 0,123 нм'},
+{n:'19.35',t:'db',q:'Найти длину волны де Бройля λ для протонов, прошедших разность потенциалов U₁ = 1 В и U₂ = 100 В.',
+ h:'Так же, как в 19.34, но масса протона m<sub>p</sub> = 1,67·10⁻²⁷ кг.',
+ s:'U₁ = 1 В: p = √(2 · 1,67·10⁻²⁷ · 1,6·10⁻¹⁹) = 2,31·10⁻²³ кг·м/с → λ = 2,87·10⁻¹¹ м<br>U₂ = 100 В: λ = 2,87·10⁻¹² м',
+ a:'λ₁ ≈ 28,7 пм; λ₂ ≈ 2,87 пм'},
+{n:'19.36',t:'db',q:'Найти длину волны де Бройля λ для: а) электрона, движущегося со скоростью v = 10⁶ м/с; б) атома водорода, движущегося со средней квадратичной скоростью при T = 300 К; в) шарика массой m = 1 г, движущегося со скоростью v = 1 см/с.',
+ h:'λ = h/(mv). Для атома: v<sub>кв</sub> = √(3kT/m), m = 1,67·10⁻²⁷ кг.',
+ s:'а) λ = 6,63·10⁻³⁴ / (9,11·10⁻³¹ · 10⁶) = 7,3·10⁻¹⁰ м<br>б) v = √(3 · 1,38·10⁻²³ · 300 / 1,67·10⁻²⁷) = 2,73·10³ м/с; λ = 6,63·10⁻³⁴ / (1,67·10⁻²⁷ · 2,73·10³) = 1,46·10⁻¹⁰ м<br>в) λ = 6,63·10⁻³⁴ / (10⁻³ · 10⁻²) = 6,6·10⁻²⁹ м<br><i>У шарика волна в 10¹⁴ раз меньше атомного ядра — поэтому волновые свойства больших тел не наблюдаются!</i>',
+ a:'а) 0,73 нм; б) 0,146 нм; в) 6,6·10⁻²⁹ м'},
+{n:'19.37',t:'db',q:'Найти длину волны де Бройля λ для электрона, имеющего кинетическую энергию: а) W₁ = 10 кэВ; б) W₂ = 1 МэВ.',
+ h:'При W, сравнимой с mₑc² = 0,511 МэВ, нужна релятивистская формула: pc = √(W(W + 2mₑc²)), λ = hc/(pc), hc = 1,24·10⁻⁶ эВ·м.',
+ s:'а) pc = √(0,01 · (0,01 + 1,022)) = 0,1016 МэВ → λ = 1,24·10⁻⁶ / 1,016·10⁵ = 1,22·10⁻¹¹ м<br>б) pc = √(1 · (1 + 1,022)) = 1,422 МэВ → λ = 1,24·10⁻⁶ / 1,422·10⁶ = 8,7·10⁻¹³ м<br><i>Для 10 кэВ и классическая формула даёт почти то же (12,3 пм), для 1 МэВ — уже нет.</i>',
+ a:'а) ≈ 12,2 пм; б) ≈ 0,87 пм'},
+{n:'19.38',t:'db',q:'Заряженная частица, ускоренная разностью потенциалов U = 200 В, имеет длину волны де Бройля λ = 2,02 пм. Найти массу m частицы, если её заряд численно равен заряду электрона.',
+ h:'λ = h/√(2meU) → m = h²/(2eUλ²).',
+ s:'m = (6,63·10⁻³⁴)² / (2 · 1,6·10⁻¹⁹ · 200 · (2,02·10⁻¹²)²) = 1,68·10⁻²⁷ кг — это протон.<br><i>В файле указано «2,02 нм», но тогда масса получилась бы 1,7·10⁻³³ кг — меньше массы электрона, чего не бывает. Скорее всего, опечатка: в задачнике λ = 2,02 пм.</i>',
+ a:'m ≈ 1,67·10⁻²⁷ кг (протон)'},
+{n:'19.39',t:'db',q:'Составить таблицу значений длин волн де Бройля λ для электрона, движущегося со скоростью v, равной: 2·10⁸; 2,2·10⁸; 2,4·10⁸; 2,6·10⁸; 2,8·10⁸ м/с.',
+ h:'Скорости близки к c — учитываем рост массы: λ = h√(1 − v²/c²)/(mₑv).',
+ s:'<table><tr><th>v, 10⁸ м/с</th><th>2,0</th><th>2,2</th><th>2,4</th><th>2,6</th><th>2,8</th></tr><tr><td>√(1 − v²/c²)</td><td>0,745</td><td>0,680</td><td>0,600</td><td>0,499</td><td>0,359</td></tr><tr><td>λ, пм</td><td>2,71</td><td>2,25</td><td>1,82</td><td>1,40</td><td>0,93</td></tr></table>Пример: λ = 6,63·10⁻³⁴ · 0,6 / (9,11·10⁻³¹ · 2,4·10⁸) = 1,82·10⁻¹² м',
+ a:'2,71; 2,25; 1,82; 1,40; 0,93 пм'},
+{n:'19.40',t:'db',q:'α-частица движется по окружности радиусом r = 8,3 мм в однородном магнитном поле, напряжённость которого H = 18,9 кА/м. Найти длину волны де Бройля λ α-частицы.',
+ h:'B = μ₀H. Сила Лоренца — центростремительная: qvB = mv²/r → p = qBr, q = 2e. λ = h/p.',
+ s:'B = 4π·10⁻⁷ · 1,89·10⁴ = 2,38·10⁻² Тл<br>p = 2 · 1,6·10⁻¹⁹ · 2,38·10⁻² · 8,3·10⁻³ = 6,3·10⁻²³ кг·м/с<br>λ = 6,63·10⁻³⁴ / 6,3·10⁻²³ = 1,05·10⁻¹¹ м',
+ a:'λ ≈ 10,5 пм'},
+{n:'19.41',t:'db',q:'Найти длину волны де Бройля λ для атома водорода, движущегося при температуре T = 293 К с наиболее вероятной скоростью.',
+ h:'v<sub>в</sub> = √(2kT/m), m = 1,67·10⁻²⁷ кг; λ = h/(mv).',
+ s:'v = √(2 · 1,38·10⁻²³ · 293 / 1,67·10⁻²⁷) = 2,2·10³ м/с<br>λ = 6,63·10⁻³⁴ / (1,67·10⁻²⁷ · 2,2·10³) = 1,8·10⁻¹⁰ м',
+ a:'λ ≈ 0,18 нм'}];
+const TOPIC={ph:'Фотон',pe:'Фотоэффект',lp:'Давление света',cp:'Эффект Комптона',db:'Волны де Бройля'};
+let tkFilter='all',tkCur=0;
+function taskHTML(k,id){const t=TASKS[k];return `<div class="task"><div><span class="num">${t.n}</span><span class="muted">${TOPIC[t.t]}</span></div>
+  <div class="tq">${t.q}</div><div class="tb"><button class="btn" data-tp="${id}h">💡 Подсказка</button><button class="btn" data-tp="${id}s">📝 Решение</button><button class="btn" data-tp="${id}a">✅ Ответ</button>${id.startsWith('L')?`<button class="btn ghost" data-tbig="${k}">⛶ К доске</button>`:''}</div>
+  <div class="tp hint hidden" id="${id}h">${t.h}</div><div class="tp sol hidden" id="${id}s">${t.s}</div><div class="tp ans hidden" id="${id}a">Ответ: ${t.a}</div></div>`;}
+function tkRender(){$('#tkList').innerHTML=TASKS.map((t,k)=>(tkFilter==='all'||t.t===tkFilter)?`<div class="card">${taskHTML(k,'L'+k)}</div>`:'').join('');}
+function tkOpen(k){tkCur=k;$('#tkBody').innerHTML=taskHTML(k,'M'+k);$('#tkModal').classList.remove('hidden');}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-tp]');if(b)$('#'+b.dataset.tp).classList.toggle('hidden');const g=e.target.closest('[data-tbig]');if(g)tkOpen(+g.dataset.tbig);});
+$$('[data-tf]').forEach(b=>b.onclick=()=>{tkFilter=b.dataset.tf;$$('[data-tf]').forEach(x=>x.classList.toggle('on',x===b));tkRender();});
+const tkPool=()=>TASKS.map((t,k)=>k).filter(k=>tkFilter==='all'||TASKS[k].t===tkFilter);
+$('#tkRandom').onclick=()=>{const p=tkPool();tkOpen(p[Math.floor(Math.random()*p.length)]);};
+$('#tkPrev').onclick=()=>{const p=tkPool(),i=p.indexOf(tkCur);tkOpen(p[(i-1+p.length)%p.length]);};
+$('#tkNext').onclick=()=>{const p=tkPool(),i=p.indexOf(tkCur);tkOpen(p[(i+1)%p.length]);};
+$('#tkClose').onclick=()=>$('#tkModal').classList.add('hidden');
+$('#tkModal').onclick=e=>{if(e.target.id==='tkModal')$('#tkModal').classList.add('hidden');};
+tkRender();
+
+/* ---------- G4: build the word ---------- */
+const WORDS=[
+['ФОТОН','Квант света — частица с нулевой массой покоя, всегда летит со скоростью c.'],
+['КВАНТ','Наименьшая неделимая порция энергии излучения.'],
+['ЭЛЕКТРОН','Частица, которую свет выбивает из металла при фотоэффекте.'],
+['ФОТОЭФФЕКТ','Вырывание электронов из вещества под действием света.'],
+['ДИФРАКЦИЯ','Огибание волнами препятствий — признак волновой природы света.'],
+['ИНТЕРФЕРЕНЦИЯ','Сложение волн, при котором получаются светлые и тёмные полосы.'],
+['ДУАЛИЗМ','Корпускулярно-волновой … : свет — и волна, и поток частиц.'],
+['ИМПУЛЬС','У фотона он равен h/λ.'],
+['ЧАСТОТА','От этой величины зависит энергия фотона: E = hν.'],
+['ПЛАНК','Учёный, в 1900 году предложивший гипотезу квантов.'],
+['ЭЙНШТЕЙН','Объяснил фотоэффект и получил за это Нобелевскую премию.'],
+['СТОЛЕТОВ','Русский физик, установивший законы фотоэффекта (1888).'],
+['ЛЕБЕДЕВ','Русский физик, впервые измеривший давление света.'],
+['КАТОД','Электрод фотоэлемента, из которого свет выбивает электроны.'],
+['КОМПТОН','Открыл увеличение длины волны рентгеновских лучей при рассеянии на электронах.'],
+['ДАВЛЕНИЕ','Свет оказывает его на поверхность: P = E(1+ρ)/c.'],
+['СПЕКТР','Разложение света по длинам волн, например радуга.'],
+['ВОЛНА','Свет как электромагнитная …'],
+['РАБОТА','… выхода — энергия, нужная, чтобы вырвать электрон из металла.'],
+['ПОЛЯРИЗАЦИЯ','Явление, доказывающее, что свет — поперечная волна.']];
+const G4={list:[],i:0,score:0,word:'',tiles:[],slots:[],lock:0,hints:0,done:false};
+function g4start(){G4.list=shuffle(WORDS.slice()).slice(0,10);G4.i=0;G4.score=0;$('#g4end').classList.add('hidden');$('#g4play').classList.remove('hidden');g4load();}
+function g4load(){const [w,d]=G4.list[G4.i];G4.word=w;G4.hints=0;G4.lock=0;G4.done=false;
+  let letters=w.split('');do{shuffle(letters);}while(letters.join('')===w&&w.length>1);
+  G4.tiles=letters.map(ch=>({ch,used:false}));G4.slots=new Array(w.length).fill(null);
+  $('#g4round').textContent=`Слово ${G4.i+1}/${G4.list.length}`;$('#g4score').textContent='Очки: '+G4.score;
+  $('#g4def').innerHTML=`${d} <span class="muted" style="font-size:.7em">(${w.length} букв)</span>`;
+  $('#g4fb').innerHTML='';$('#g4next').classList.add('hidden');$$('#g4hint,#g4mix,#g4clear,#g4skip').forEach(b=>b.disabled=false);g4draw();}
+function g4draw(st){
+  $('#g4slots').innerHTML=G4.slots.map((t,k)=>`<div class="slot${t!==null?' f':''}${k<G4.lock?' lock':''}${st?' '+st:''}" data-sl="${k}">${t!==null?G4.tiles[t].ch:''}</div>`).join('');
+  $('#g4tiles').innerHTML=G4.tiles.map((t,k)=>`<button class="tile${t.used?' used':''}" data-tl="${k}">${t.ch}</button>`).join('');}
+function g4check(){if(G4.slots.some(x=>x===null))return;
+  const got=G4.slots.map(t=>G4.tiles[t].ch).join('');
+  if(got===G4.word){G4.done=true;const pts=Math.max(2,10-G4.hints*3);G4.score+=pts;beep(true);g4draw('ok');
+    $('#g4score').textContent='Очки: '+G4.score;$('#g4fb').innerHTML=`<div class="fb ok"><b>✅ Верно: ${G4.word}! +${pts}</b></div>`;
+    $$('#g4hint,#g4mix,#g4clear,#g4skip').forEach(b=>b.disabled=true);
+    $('#g4next').textContent=G4.i>=G4.list.length-1?'Итоги 🏁':'Следующее слово ➜';$('#g4next').classList.remove('hidden');}
+  else{beep(false);g4draw('bad');const el=$('#g4slots');el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake');
+    $('#g4fb').innerHTML='<div class="fb no"><b>❌ Пока не то.</b> Нажмите на букву в слове, чтобы вернуть её, или возьмите подсказку.</div>';}}
+document.addEventListener('click',e=>{if(G4.done)return;
+  const t=e.target.closest('[data-tl]');if(t){const k=+t.dataset.tl;if(G4.tiles[k].used)return;const s=G4.slots.indexOf(null);if(s<0)return;G4.slots[s]=k;G4.tiles[k].used=true;g4draw();g4check();return;}
+  const sl=e.target.closest('[data-sl]');if(sl){const s=+sl.dataset.sl;if(s<G4.lock||G4.slots[s]===null)return;G4.tiles[G4.slots[s]].used=false;G4.slots[s]=null;$('#g4fb').innerHTML='';g4draw();}});
+function g4clearFrom(n){for(let s=n;s<G4.slots.length;s++){if(G4.slots[s]!==null){G4.tiles[G4.slots[s]].used=false;G4.slots[s]=null;}}}
+$('#g4clear').onclick=()=>{g4clearFrom(G4.lock);$('#g4fb').innerHTML='';g4draw();};
+$('#g4mix').onclick=()=>{g4clearFrom(G4.lock);const keep=G4.tiles.map((t,k)=>k).filter(k=>G4.tiles[k].used);const free=shuffle(G4.tiles.filter(t=>!t.used));
+  // rebuild tiles keeping locked ones
+  const locked=G4.slots.slice(0,G4.lock).map(k=>G4.tiles[k]);G4.tiles=[...locked,...free];G4.slots=G4.slots.map((x,i)=>i<G4.lock?i:null);g4draw();};
+$('#g4hint').onclick=()=>{if(G4.lock>=G4.word.length)return;g4clearFrom(G4.lock);const need=G4.word[G4.lock];const k=G4.tiles.findIndex(t=>!t.used&&t.ch===need);
+  G4.slots[G4.lock]=k;G4.tiles[k].used=true;G4.lock++;G4.hints++;$('#g4fb').innerHTML=`<div class="fb ok">💡 Подсказка: буква «${need}» на месте ${G4.lock}.</div>`;g4draw();g4check();};
+$('#g4skip').onclick=()=>{G4.done=true;G4.slots=G4.word.split('').map((ch,i)=>i);G4.tiles=G4.word.split('').map(ch=>({ch,used:true}));g4draw('bad');
+  $('#g4fb').innerHTML=`<div class="fb no"><b>Ответ: ${G4.word}</b></div>`;$$('#g4hint,#g4mix,#g4clear,#g4skip').forEach(b=>b.disabled=true);
+  $('#g4next').textContent=G4.i>=G4.list.length-1?'Итоги 🏁':'Следующее слово ➜';$('#g4next').classList.remove('hidden');};
+$('#g4next').onclick=()=>{if(G4.i>=G4.list.length-1){$('#g4play').classList.add('hidden');const e=$('#g4end');e.classList.remove('hidden');
+  e.innerHTML=`<div class="huge">🔤 ${G4.score} из ${G4.list.length*10}</div><p class="lead">${G4.score>=80?'Словарь физика — на отлично!':G4.score>=50?'Хороший результат!':'Повторим термины ещё раз?'}</p><button class="btn primary" id="g4again" style="font-size:1.3em">Играть ещё</button>`;
+  $('#g4again').onclick=g4start;confetti();beep(true);}else{G4.i++;g4load();}};
+g4start();
+
+/* ---------- G5: jeopardy ---------- */
+const JP=[
+['Фотон',[
+ ['Как называется квант (порция) света?','Фотон'],
+ ['Чему равна масса покоя фотона?','Нулю'],
+ ['По какой формуле находят энергию фотона через длину волны?','E = hc/λ'],
+ ['Энергия фотона 2 эВ. Сколько это в джоулях?','3,2·10⁻¹⁹ Дж'],
+ ['Во сколько раз энергия фотона с λ = 400 нм больше, чем с λ = 800 нм?','В 2 раза (E ~ 1/λ)']]],
+['Фотоэффект',[
+ ['Какие частицы вылетают из металла при фотоэффекте?','Электроны'],
+ ['Как называется минимальная энергия, нужная, чтобы вырвать электрон из металла?','Работа выхода'],
+ ['Запишите уравнение Эйнштейна для фотоэффекта.','hν = A + mv²/2'],
+ ['Работа выхода 2 эВ, энергия фотона 5 эВ. Найдите максимальную кинетическую энергию электрона.','3 эВ'],
+ ['Работа выхода цинка 4,2 эВ. Найдите красную границу фотоэффекта (подсказка: λ ≈ 1240/A нм).','≈ 295 нм']]],
+['Учёные',[
+ ['Кто в 1900 году предложил гипотезу квантов?','Макс Планк'],
+ ['Кто объяснил фотоэффект и получил за это Нобелевскую премию?','Альберт Эйнштейн'],
+ ['Русский физик, установивший законы фотоэффекта.','Александр Столетов'],
+ ['Кто впервые измерил давление света?','Пётр Лебедев'],
+ ['Кто предположил, что электроны тоже обладают волновыми свойствами?','Луи де Бройль']]],
+['Дуализм',[
+ ['Назовите явление, доказывающее волновые свойства света.','Интерференция (или дифракция, поляризация)'],
+ ['Как называется свойство света быть и волной, и частицей?','Корпускулярно-волновой дуализм'],
+ ['Запишите формулу длины волны де Бройля.','λ = h/p = h/(mv)'],
+ ['Что случится с полосами в опыте с двумя щелями, если узнать, через какую щель пролетел фотон?','Интерференционные полосы исчезнут'],
+ ['Почему мы не замечаем волновых свойств футбольного мяча?','Из-за большой массы его длина волны де Бройля ничтожно мала (~10⁻³⁴ м)']]],
+['Давление и Комптон',[
+ ['На какую поверхность свет давит сильнее: чёрную или зеркальную?','На зеркальную (в 2 раза сильнее)'],
+ ['Запишите формулу давления света с коэффициентом отражения ρ.','P = E(1 + ρ)/c'],
+ ['Какое астрономическое явление Бредихин объяснил давлением света?','Форму хвостов комет'],
+ ['Как меняется длина волны рентгеновских лучей при эффекте Комптона?','Увеличивается'],
+ ['На сколько увеличится длина волны при комптоновском рассеянии под углом 90°?','На 2,43 пм (комптоновская длина волны h/mₑc)']]]];
+const JG={n:3,names:['Фотоны','Электроны','Кванты','Волны'],sc:[],used:new Set(),cur:null,timer:null};
+function jpNames(){$('#jpNames').style.gridTemplateColumns=`repeat(${JG.n},1fr)`;$('#jpNames').innerHTML=[...Array(JG.n)].map((_,i)=>`<div class="team"><div class="nm">Команда ${i+1}</div><input data-jnm="${i}" value="${JG.names[i]}"></div>`).join('');}
+$$('[data-jn]').forEach(b=>b.onclick=()=>{JG.n=+b.dataset.jn;$$('[data-jn]').forEach(x=>x.classList.toggle('on',x===b));jpNames();});
+jpNames();
+function jpStart(){$$('[data-jnm]').forEach(i=>JG.names[+i.dataset.jnm]=i.value||('Команда '+(+i.dataset.jnm+1)));
+  JG.sc=new Array(JG.n).fill(0);JG.used=new Set();$('#jpSetup').classList.add('hidden');$('#jpEnd').classList.add('hidden');$('#jpPlay').classList.remove('hidden');jpBoard();jpScores();}
+function jpBoard(){let h=JP.map(c=>`<div class="jcat">${c[0]}</div>`).join('');
+  for(let r=0;r<5;r++)for(let c=0;c<5;c++){const id=c+'-'+r;h+=`<button class="jcell${JG.used.has(id)?' used':''}" data-jc="${id}">${(r+1)*100}</button>`;}
+  $('#jpBoard').innerHTML=h;$$('#jpBoard .jcell').forEach(b=>b.onclick=()=>{if(!JG.used.has(b.dataset.jc))jpOpen(b.dataset.jc);});}
+function jpScores(){$('#jpScores').innerHTML=JG.sc.map((v,i)=>`<div class="jteam"><div class="nm">${JG.names[i]}</div><div class="sc">${v}</div><div class="row"><button class="btn minus" data-jadj="${i}:-100">−100</button><button class="btn plus" data-jadj="${i}:100">+100</button></div></div>`).join('');}
+function jpOpen(id){const [c,r]=id.split('-').map(Number);const val=(r+1)*100;JG.cur={id,val,awarded:false};
+  $('#jpCat').textContent=JP[c][0];$('#jpVal').textContent=val;$('#jpQ').textContent=JP[c][1][r][0];$('#jpA').textContent=JP[c][1][r][1];
+  $('#jpA').classList.add('hidden');$('#jpShow').classList.remove('hidden');
+  $('#jpAward').innerHTML=JG.sc.map((_,i)=>`<div class="tm">${JG.names[i]} <button class="btn plus" data-jaw="${i}:1">+${val}</button><button class="btn minus" data-jaw="${i}:-1">−${val}</button></div>`).join('');
+  $('#jpAward').classList.remove('hidden');$('#jpModal').classList.remove('hidden');
+  let left=30;clearInterval(JG.timer);$('#jpTimer').style.width='100%';
+  JG.timer=setInterval(()=>{left-=.1;$('#jpTimer').style.width=Math.max(0,left/30*100)+'%';if(left<=0){clearInterval(JG.timer);beep(false);}},100);}
+function jpClose(){clearInterval(JG.timer);if(JG.cur){JG.used.add(JG.cur.id);JG.cur=null;}$('#jpModal').classList.add('hidden');jpBoard();jpScores();
+  if(JG.used.size>=25){$('#jpPlay').classList.add('hidden');const e=$('#jpEnd');e.classList.remove('hidden');const mx=Math.max(...JG.sc);const win=JG.names.filter((_,i)=>JG.sc[i]===mx);
+    e.innerHTML=`<div class="huge">🏆 ${win.length>1?'Ничья: '+win.join(', '):'Победа: «'+win[0]+'»'}</div><p class="lead">${JG.sc.map((v,i)=>`${JG.names[i]}: <b>${v}</b>`).join(' &nbsp;·&nbsp; ')}</p><button class="btn primary" id="jpAgain" style="font-size:1.3em">Новая игра</button>`;
+    $('#jpAgain').onclick=()=>{$('#jpEnd').classList.add('hidden');$('#jpSetup').classList.remove('hidden');};confetti();beep(true);}}
+$('#jpShow').onclick=()=>{$('#jpA').classList.remove('hidden');$('#jpShow').classList.add('hidden');clearInterval(JG.timer);};
+$('#jpClose').onclick=jpClose;
+document.addEventListener('click',e=>{const a=e.target.closest('[data-jaw]');if(a&&JG.cur){const [i,sg]=a.dataset.jaw.split(':').map(Number);JG.sc[i]+=sg*JG.cur.val;beep(sg>0);
+    a.parentElement.querySelectorAll('.btn').forEach(b=>b.disabled=true);$('#jpA').classList.remove('hidden');$('#jpShow').classList.add('hidden');clearInterval(JG.timer);jpScores();
+    if(sg>0)setTimeout(jpClose,900);}
+  const d=e.target.closest('[data-jadj]');if(d){const [i,v]=d.dataset.jadj.split(':').map(Number);JG.sc[i]+=v;jpScores();}});
+$('#jpGo').onclick=jpStart;
+$('#jpReset').onclick=()=>{$('#jpPlay').classList.add('hidden');$('#jpSetup').classList.remove('hidden');};
+
+show(location.hash.slice(1)||'intro');
+</script>
 </body>
 </html>
